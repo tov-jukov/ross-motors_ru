@@ -45,6 +45,9 @@ body
 
 /// custom
 
+a
+	outline: none !important
+
 .main-head
 	min-height: 100vh
 
@@ -104,7 +107,7 @@ nav
 
 h1
 	font: 
-		size: 42px;
+		size: 40px;
 
 .phone
 	text-align: left
@@ -159,6 +162,8 @@ section, header
 	padding: 2% 0
 	h1
 		text-transform: uppercase
+		padding: 40px
+
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6
@@ -182,15 +187,16 @@ h1, h2, h3, h4, h5, h6,
 	letter-spacing: 1px
 	text-transform: uppercase
 	padding: 8px 24px
-	border-radius 3px
+	border-radius: 3px
 	box-shadow: 0 2px 0 darken($red, 20)
-	transition: all .25s ease
+	transition: all .15s ease
 	&:hover, &:focus
 		color: #FFF
 		text-decoration: none
 	&:hover
 		background-color: lighten($red, 8)
-
+	&:active
+		background-color: darken($red, 8)
 
 button
 
