@@ -175,7 +175,22 @@ h1, h2, h3, h4, h5, h6,
 
 .button
 	display: inline-block
-	
+	border: none
+	background-color: $red
+	color: #FFF
+	font-size: 32px
+	letter-spacing: 1px
+	text-transform: uppercase
+	padding: 8px 24px
+	border-radius 3px
+	box-shadow: 0 2px 0 darken($red, 20)
+	transition: all .25s ease
+	&:hover, &:focus
+		color: #FFF
+		text-decoration: none
+	&:hover
+		background-color: lighten($red, 8)
+
 
 button
 
