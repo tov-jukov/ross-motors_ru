@@ -45,8 +45,15 @@ body
 
 /// custom
 
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6
+	font-family: "TrebuchetMSRegular", sans-serif
+	font-weight: normal
+
 a
 	outline: none !important
+	color: #000
+	text-decoration: none
 
 .main-head
 	// min-height: 100vh
@@ -106,8 +113,10 @@ nav
 	background-color: #F00
 
 h1
-	font: 
-		size: 48px;
+	font-size: 48px
+
+h2
+	font-size: 34px
 
 .phone
 	text-align: left
@@ -166,7 +175,7 @@ section, header
 	.button
 		// margin-top: 50px
 	.garant
-		// margin-top: 70px
+		margin-top: 70px
 		text-transform: uppercase
 	.car2
 		// display: block
@@ -179,10 +188,7 @@ section, header
 
 
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6
-	font-family: "TrebuchetMSRegular", sans-serif
-	font-weight: normal
+
 
 .button
 	display: inline-block
@@ -204,6 +210,37 @@ h1, h2, h3, h4, h5, h6,
 	&:active
 		background-color: darken($red, 8)
 		transform: translateY(2px)
+
+section
+	h2
+		text-align: center
+		text-transform: uppercase
+
+.m-calc-item
+	text-transform: uppercase
+	font-size: 24px
+
+.m-calc-wrap
+	.fa
+		font-size: 42px
+		position: relative
+		display: inline-block
+		padding-bottom: 40px
+		// background-color: #F00
+
+// 		// display: block
+// 	a
+// 		// display: block
+// 		// text-align: left
+// 		// padding: 18px 25px
+// 		color: #000
+// 		+mt(.5s)
+// 		&:hover
+// 			color: #e1e1e1
+// 			text-decoration: none
+
+
+
 
 
 
