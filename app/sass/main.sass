@@ -172,8 +172,6 @@ section, header
 	h1
 		text-transform: uppercase
 		padding: 0
-	.button
-		// margin-top: 50px
 	.garant
 		margin-top: 70px
 		text-transform: uppercase
@@ -199,7 +197,7 @@ section, header
 	letter-spacing: 1px
 	text-transform: uppercase
 	padding: 8px 24px
-	border-radius: 3px
+	border-radius: 5px
 	box-shadow: 0 2px 0 darken($red, 20)
 	transition: all .15s ease
 	&:hover, &:focus
@@ -218,14 +216,17 @@ section
 
 .m-calc-item
 	text-transform: uppercase
-	font-size: 24px
+	font-size: 22px
+	// background-color: #F00
+	// display: inline-block
 
-.m-calc-wrap
+.m-calc
+	padding-bottom: 40px
 	.fa
 		font-size: 42px
 		position: relative
 		display: inline-block
-		padding-bottom: 40px
+		
 		// background-color: #F00
 
 // 		// display: block
@@ -239,7 +240,88 @@ section
 // 			color: #e1e1e1
 // 			text-decoration: none
 
+.rm-wrap
+	text-align: center
+	background-image: url(../img/sc02.png)
+	background-size: cover
+	background-position: top center
+	min-height: 580px
+	h2
+		color: #FFF
+	p
+		font-size: 32px
+		color: #fff
+		line-height: 46px
+	span
+		p
+			font-size: 52px
+			font-family: TrebuchetMSBold, sans-serif
+			color: #FFF
 
+.services
+	text-align: center
+	background-image: url(../img/service-bg.jpg)
+	background-size: cover
+	background-position: top center
+	height: 380px
+
+
+
+.text-right
+	text-align: right
+.text-left
+	text-align: left
+.text-center
+	text-align: center
+
+.section-class
+	background-color: #f7f7f7
+	background-image: url(../img/service-bg.jpg)
+	background-size: cover
+	background-position: top center
+	padding: 20px 0
+	h2
+		text-align: center
+		text-transform: uppercase
+		font-size: 24px
+		margin-bottom: 60px
+
+.section-class-item
+	margin-bottom: 30px
+	.icon-wrap
+		width: 70px
+		height: 70px
+		line-height: 70px
+		text-align: center
+		background-color: $main-color
+		display: inline-block
+		border-radius: 10em
+		font-size: 32px
+		color: #fff
+	h3
+		margin-top: 0
+		font-size: 16px
+		font-weight: bold
+
+	p
+		color: #6f6f6f
+
+.items-right
+	.item-icon
+		padding-left: 20px
+
+.items-right,
+.items-left
+	margin-top: 30px
+
+.item-text,
+.item-icon
+	display: table-cell
+	vertical-align: top
+
+.items-left
+	.item-icon
+		padding-right: 20px
 
 
 
