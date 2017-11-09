@@ -161,7 +161,8 @@ h2
 
 //Секции
 // section, header
-	// position: relative
+// 	padding: 40px 0
+// 	// position: relative
 
 .header-content
 	background-image: url(../img/city-night-light-road-bg0.png)
@@ -243,6 +244,7 @@ section
 	background-size: cover
 	background-position: top center
 	min-height: 580px
+	padding: 40px 0
 	h2
 		color: #FFF
 	p
@@ -276,7 +278,7 @@ section
 	background-image: url(../img/service-bg.jpg)
 	background-size: cover
 	background-position: top center
-	padding: 20px 0
+	padding: 40px 0
 	h2
 		text-align: center
 		text-transform: uppercase
@@ -299,7 +301,6 @@ section
 		margin-top: 0
 		font-size: 16px
 		font-weight: bold
-
 	p
 		color: #6f6f6f
 
@@ -323,27 +324,33 @@ section
 //Секция сервис
 
 section.service-s
-	background-color: #F00
+	background-image: url(../img/service-bg.jpg)
+	background-size: cover
+	background-position: top center
+	padding: 40px 0
+	min-height: 360px
 
 
-.service-item
-	text-align: center
-	// display: block
+.service-itemz
+	// text-align: center
+	display: inline-block
 	position: relative
 	img
+		// display: inline
+		width: 95px
 		position: absolute
 	h3
+		text-align: center
 		font-size: 16px
 		font-family: "TrebuchetMSBold", sans-serif
 		text-transform: uppercase
-		padding: 30px
-
+		margin-top: 120px
 	span.s-item
 		background-color: #F00
 
 .best-s
 	background-color: #f7f7f7
-	background-image: url(../img/best.png)
+	background-image: url(../img/best.jpg)
 	background-size: cover
 	background-position: top center
 	padding: 20px 0
@@ -351,7 +358,7 @@ section.service-s
 	h2
 		text-align: center
 		text-transform: uppercase
-		font-size: 24px
+		font-size: 34px
 		margin-bottom: 60px
 		color: #FFF
 	h3
@@ -361,10 +368,45 @@ section.service-s
 	padding: 30px
 
 section.doverie
-	padding: 30px
+	padding: 40px 0
 	.txt-wrap
 		// text-transform: uppercase
 		font-size: 16px
 		line-height: 20px
+
+section.slide-s
+	background-image: url(../img/slider-bg.jpg)
+	background-size: cover
+	background-position: top center
+	padding: 40px 0
+	min-height: 390px
+
+section.why-we
+	background-image: url(../img/why-we-bg.jpg)
+	background-size: cover
+	background-position: top center
+	padding: 40px 0
+	min-height: 900px
+	h2
+		color: #FFF
+		text-align: center
+		text-transform: uppercase
+		font-size: 34px
+
+section.ya-map
+	padding: 40px 0
+	h2
+		color: #000
+		text-align: center
+		text-transform: uppercase
+		font-size: 34px
+
+
+.map-wrap
+	padding: 20px 0
+
+.line
+	height: 1px
+	color: #ccc
 
 @import "media" // Всегда в конце
