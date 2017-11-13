@@ -121,8 +121,8 @@ h2
 .phone
 	text-align: left
 	.phone-1
-		font-size: 18px
-		line-height: 18px
+		font-size: 16px
+		line-height: 0.9
 		vertical-align: midle
 		margin-left: 1px
 		.fa
@@ -136,7 +136,7 @@ h2
 .work-time
 	text-align: left
 	font-size: 16px
-	line-height: 16px
+	line-height: 0.9
 	vertical-align: midle
 	.fa
 		// color: #d43436
@@ -149,7 +149,7 @@ h2
 .adress-nt
 	text-align: left
 	font-size: 16px
-	line-height: 16px
+	line-height: 0.9
 	vertical-align: midle
 	.fa
 		// color: #d43436
@@ -165,7 +165,7 @@ h2
 // 	// position: relative
 
 .header-content
-	background-image: url(../img/city-night-light-road-bg0.png)
+	background-image: url(../img/city-night-light-road-bg.jpg)
 	background-size: cover
 	background-position: top center
 	min-height: 540px
@@ -174,7 +174,7 @@ h2
 		text-transform: uppercase
 		padding: 0
 	.garant
-		margin-top: 70px
+		margin-top: 80px
 		text-transform: uppercase
 	.car2
 		// display: block
@@ -183,6 +183,15 @@ h2
 		margin-top: -20px
 		margin-left: -40px
 		// background-color: #FFF
+	.logo-brands
+		img.emblem
+			width: 30px
+		// img.emblem-big
+		// 	width: 60px
+	.wrap-img
+		text-align: center
+	.button
+		margin-top: 100px
 
 //button
 
@@ -274,7 +283,7 @@ section
 	p
 		font-size: 32px
 		color: #fff
-		line-height: 46px
+		line-height: 1.4
 	span
 		p
 			font-size: 52px
@@ -362,7 +371,7 @@ section.service-s
 		text-decoration: none
 	img
 		// display: inline
-		width: 95px
+		width: 90px
 		// margin-right: 40px
 		margin-left: 30px
 		position: absolute
@@ -398,27 +407,30 @@ section.service-s
 section.doverie
 	padding: 40px 0
 	.txt-wrap
-		// text-transform: uppercase
-		font-size: 20px
-		line-height: 22px
+		p
+			// text-transform: uppercase
+			font-size: 20px
+			line-height: 22px
 
 section.slide-s
 	background-image: url(../img/slider-bg.jpg)
 	background-size: cover
 	background-position: top center
 	padding: 40px 0
-	min-height: 550px
+	min-height: 500px
 
 section.why-we
 	background-image: url(../img/why-we-bg.jpg)
 	background-size: cover
 	background-position: top center
 	padding: 40px 0
-	min-height: 810px
+	min-height: 760px
 	color: #FFF
-	font-size: 34px
+	font-size: 30px
+	// line-height: 30px
 	text-transform: uppercase
 	line-height: 58px
+
 	h2
 		color: #FFF
 		text-align: center
@@ -444,7 +456,7 @@ section.ya-map
 footer
 	padding-top: 40px
 	background-color: $red
-	min-height: 250px
+	min-height: 270px
 	font-size: 16px
 	color: #FFF
 	ul
@@ -472,6 +484,7 @@ footer
 		margin-top: 22px
 	.phone
 		text-align: left
+		line-height: 20px
 		a
 			color: #FFF
 			text-decoration: none
@@ -502,8 +515,5 @@ footer
 		// justify-content: center
 
 //popup
-
-@import "popup"
-
 
 @import "media" // Всегда в конце

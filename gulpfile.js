@@ -30,9 +30,6 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/vue/vue.js',
 		'app/libs/vue/vue-carousel-3d.js',
-		'app/libs/uploader/jquery.fine-uploader.js',
-		'app/libs/uploader/uploader.js',
-		'app/libs/validation.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
