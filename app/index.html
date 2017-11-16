@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="mnu-line clearfix">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="#" class="logo"><img src="img/logo.png" alt=""></a>
+                        <a href="#" class="logo"><img src="img/logo.svg" alt=""></a>
                     </div>
                     <div class="col-md-4">
                     </div>
@@ -129,7 +129,35 @@
                         <div class="row">
                             <div class="col-md-6 text-center">
                                 <div class="btn-wrap">
-                                    <a href="#" class="button">Записаться</a>
+
+                                    	<!--a href="#" class="button">Записаться</a-->
+					<div class="wrap-f" class = "forms-wrap">
+                            			<div id="app-callback" >
+    <!--пример как используется четвёртая модальная форма -->
+			    <v-dialog button_text = "Записаться" button_style="button">
+			        <h4>Записаться</h4>
+			<p>Спасибо, что выбрали нас!<br/>
+			  <form>
+					Имя
+					<input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" />
+					Телефон*:
+					<input type="text"  v-mask="'+N(NNN)NN-NN-NNN'"  id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+					<!--spam v-show="$v.form.IPhone.required && !$v.form.IPhone.minLength" class="red">Укажите номер телефона!</br></spam-->
+					Укажите вашу эл.почту
+					<input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" />
+				        <!--spam v-show="!$v.form.IMail.email" class="red">Корректно введите эл.почту!</br></spam-->
+					<label><span class = "red">*</span>– обязательные поля.
+					</label></br>
+					<input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS"/>
+				    	Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+					<input type="submit" value="Заказать звонок" v-on:click="onClick" :disabled="form.chekedBS == false" /> <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
+			  </form>
+			    </v-dialog>
+    <!--пример как используется вторая модальная форма -->
+   
+				</div>
+                        </div>
+
                                 </div>
                             </div>
                             <div class="col-md-6 hidden-sm hidden-xs">
@@ -156,7 +184,45 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="items-left">
-                        <a href="#myModal1" type="submit" data-toggle="modal">
+			
+			<div class="wrap-f"  >
+                            <div id="app-form1" >
+				<v-dialog-a   name_form = "ОНЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО">
+				<h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
+				<p>Спасибо, что выбрали нас!</p>
+					  <form id = "form2">
+							
+							<div class="dropdown">
+								<span>Марку*:</span>
+								<select v-model="selectedMark">
+								<option value="">Укажите марку</option>
+								<option v-for="(val_obj,val) in this.Marks" :value="val">{{val}}</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								<span>Модель*:</span>
+								<select :disabled="aMarks.length == 0" v-model="selectedModel">
+								<option value="">Укажите модель</option>
+								<option v-for="val in this.aMarks">{{val}}</option>
+								</select>
+							</div>
+							<div class="dropdown">
+								Пробег*:
+								<select :disabled="aModel.length == 0" v-model="selectedMileage">
+								<option value="">Укажите пробег</option>
+								<option v-for="val in this.aModel"  >{{val}}</option>
+								</select>
+							</div>
+							<input type="submit" value="Отправить" @click="onClick" :disabled="aModel.length == 0 || selectedMileage == ''"/>
+					  </form>
+				
+				</v-dialog-a>
+				
+			    </div>
+			</div>
+			
+			
+                        <!--<a href="#myModal1" type="submit" data-toggle="modal">
                             <div class="section-class-item">
                                 <div class="item-icon text-left">
                                     <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
@@ -175,7 +241,9 @@
                                     <h3>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ<br>КУЗОВНОГО РЕМОНТА</h3>
                                 </div>
                             </div>
-                        </a>
+                        </a>-->
+
+
                     </div>
                 </div>
                 <div class="col-md-2"></div>
@@ -485,14 +553,13 @@
                         </div>
                         <!-- <a href="" class="button-black" id="show-modal" @click="showModal = true">заказать звонок</a> -->
                         <!-- <p class="button-black" id="show-modal" @click="showModal = true">заказать звонок</p> -->
-                        <div class="wrap-f"
-                            <div id="app-form4">
+                        <div class="wrap-f">
+                            <div id="app-form4" class = "forms-wrap">
     <!--пример как используется четвёртая модальная форма -->
-    <v-dialog>
+    <v-dialog button_text = "Заказать звонок" button_style="button-black">
         <h4>ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
         <p>Спасибо, что выбрали нас!</p>
-          <form>
-                <div class="MFBody">
+          <form id = "form4">
                     <p>Имя*</p>
                     <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
                     <p>Телефон*:</p>
@@ -503,11 +570,8 @@
                     <textarea  type="comment" id="inputMessage"  name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
                     <label><span class = "red">*</span>– обязательные поля.</label><br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS"/>
-                        Отправляя форму вы соглашаетесь на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                </div>      
-                <div class="MFFooter">
+                    <label>Отправляя форму вы соглашаетесь на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a></label>
                     <input type="submit" value="Отправить" @click="onClick" :disabled="form.chekedBS == false"/>
-                </div>
           </form>
     </v-dialog>
     <!--пример как используется вторая модальная форма -->
@@ -522,23 +586,50 @@
 
 
 <template id="dialog-template">
-                                <div>
-                                    <div class="Dialog" v-show="active">
-                                        <div class="MFOverlay"></div>
-                                        <div class="MFContent" v-show="active">
-                                            <a class="close" href="#" @click="close()"></a>
-                                            <slot></slot>
-                                        </div>
-                                    </div>
-                                    <p class="button-black" id="show-modal"@click="open()">заказать звонок</p>
-                                    <!-- <a class="link" href="#" @click="open()">ссылка</a> -->
-                                </div>
-                            </template>
+<div class= "MainDialog ">
+	   <div class="Dialog" v-show="active">
+			<div class="MFOverlay"></div>
+			<div class = "MFContent" v-show="active" >
+			<a class="close" href="#" @click="close()"></a>
+				<slot ></slot>
+			</div>
+		</div>
+		<p v-bind:class="button_style" id="show-modal"@click="open()">{{button_text}}</p>
+	</div>
+                               
+ </template>
+<template id="dialog-template-a">
 
+<div class= "MainDialog ">
+	   
+		<div class="Dialog" v-show="active">
+			<div class="MFOverlay"></div>
+			   <div class = "MFContent" v-show="active" >
+			<a class="close" href="#" @click="close()"></a>
+				<slot ></slot>
+			</div>
+		</div>
+	   
+		<a id="show-modal"@click="open()">
+                            <div class="section-class-item">
+                                <div class="item-icon text-left">
+                                    <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="item-text text-left">
+                                    <h3>{{name_form}}</h3>
+                                </div>
+                            </div>
+                </a>
+		<!--p class="button-black" id="show-modal"@click="open()">{{button_text}}</p-->
+	</div>
+       
+ </template>
 
 
         <link rel="stylesheet" href="css/main.min.css">
         <script src="js/scripts.min.js"></script>
+	
+	
 </body>
 
 </html>
