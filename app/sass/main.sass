@@ -415,6 +415,8 @@ section.doverie
 			// text-transform: uppercase
 			font-size: 20px
 			line-height: 22px
+			span
+				font-weight: bold
 
 section.slide-s
 	background-image: url(../img/slider-bg.jpg)
@@ -518,6 +520,118 @@ footer
 		// align-items: center
 		// justify-content: center
 
-//popup
+//call-back
+.call-back-wrap
+	width: 600px
+	height: auto
+
+//sdsds
+
+footer
+	.MFBody
+		p
+			font-size: 12px
+		label
+			font-size: 12px
+	h4, p
+		color: #000
+input[type=text], select
+	width: 100%
+	padding: 6px 10px
+	margin: 2px 0
+	display: inline-block
+	border: 1px solid #ccc
+	border-radius: 4px
+	box-sizing: border-box
+
+textarea, select
+	width: 100%
+	padding: 6px 10px
+	margin: 2px 0
+	display: inline-block
+	border: 1px solid #ccc
+	border-radius: 4px
+	box-sizing: border-box
+	resize: none
+	overflow: hidden
+	font-size: 14px
+
+input[type=submit]
+	width: 100%
+	background-color: #C1C1C1
+	color: white
+	padding: 5px 10px
+	margin: 2px 0
+	border: none
+	border-radius: 4px
+	cursor: pointer
+	&:disabled:hover
+		cursor: not-allowed
+	&:hover
+		background-color: #45a049
+
+a.link
+	color: #0275d8 !important
+
+.red
+	color: rgb(255, 0, 0)
+
+.MFOverlay
+	position: fixed
+	z-index: 1
+	width: 100%
+	height: 100%
+	top: 0
+	left: 0
+	background: rgba(0, 0, 0, 0.6)
+
+.MFContent
+	position: fixed
+	z-index: 13
+	top: 50%
+	left: 50%
+	transform: translate(-50%, -50%)
+	background-color: white
+	text-align: center
+	width: 30%
+	height: auto
+	border-radius: 5px
+	padding: 20px
+
+.MFBody
+	padding: 20px
+	font-size: 15px
+	color: #4a4a4a
+	word-wrap: break-word
+	word-break: break-all
+	font-weight: 500
+	height: 60%
+
+//Крестик
+
+.close
+	position: absolute
+	right: 20px
+	top: 8px
+	width: 15px
+	height: 15px
+	opacity: 0.3
+	&:hover
+		opacity: 1
+		cursor: pointer
+	&:before, &:after
+		position: absolute
+		left: 15px
+		content: ' '
+		height: 33px
+		width: 2px
+		background-color: #333
+	&:before
+		transform: rotate(45deg)
+	&:after
+		transform: rotate(-45deg)
+
+
+
 
 @import "media" // Всегда в конце
