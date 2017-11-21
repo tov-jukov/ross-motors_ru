@@ -27,7 +27,10 @@ components: {
 });
 
 //---????????----------------------------------------
-
+init_form_data = {
+    project_name: 'Росс-Моторс',
+    admin_email: 'tov-jukof@ya.ru'
+}
 
 //import { validationMixin } from 'vuelidate'
 //const { required,email,minLength } = window.validators;
@@ -96,7 +99,7 @@ new Vue({
             el: "#app-form1",
             data:{
                 Marks: {
-                    "Hyundai": ["Solaris", "Accent"],                   
+                    "Hyundai": ["Solaris", "Accent"],
                     "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]                   
                 },
                 mileages:[
@@ -122,6 +125,7 @@ new Vue({
                 selectedMileage: "",
                 aMarks: [],
                 aModel: []
+
                 
             },
             methods:{
@@ -172,6 +176,9 @@ new Vue({
             }
         });
 //Форма записи
+//project_name - название проекта
+//admin_email - адрес приёма корреспонденции
+//form_subject - форма отправитель
 
 new Vue({
             el: "#app-callback1",
@@ -180,17 +187,24 @@ new Vue({
                 IName:"",
                 IPhone:"",
                 IMail:"",
+                form_subject: "Форма заказать звонок",
                 chekedBS: false
             }
         },
         methods:{
             onClick:function(){
-                console.log('saved',data.form|json);
-                this.$http.post('/api', data.form|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
+                console.log(this._data.form);
+                console.log(this.form);
+                 /*this.$http.post('/mail.php', data.form|json, function (data, status, request) {
+                     console.log('success');
+                 }).error(function (data, status, request) {
+                     console.log('error');
+                 });
+                /*this.$http.post('/js/', data.form|json, { emulateJSON: true,emulateHTTP:true }).then(function(response) {
                      console.log('saved', response);
                     },function(response) {
                       console.log('error', response);
-                    }); 
+                    }); */
             }
         },
         
@@ -304,7 +318,7 @@ new Vue({
                     console.log(key);
                     formData.append('more_image_['+key+']', files[key]);
                 }
-                 this.$http.post('/my/post/url', form, function (data, status, request) {
+                 this.$http.post('/my/post/url', formData, function (data, status, request) {
                      console.log('success');
                  }).error(function (data, status, request) {
                      console.log('error');
