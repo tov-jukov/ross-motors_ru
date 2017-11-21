@@ -26,19 +26,19 @@ components: {
   }
 });
 
-//---‘ÓÏ‡ ‚‡ÎË‰‡ˆËË----------------------------------------
+//---????????----------------------------------------
 
 
 //import { validationMixin } from 'vuelidate'
 //const { required,email,minLength } = window.validators;
-//---ŒÔÂ‰ÂÎÂÌËÂ Ï‡ÒÍË--------------------------------------
+//---?????????-------------------------------------
   // As a plugin
   Vue.use(VueMask.VueMaskPlugin);
   // As a directive
   Vue.directive('mask', VueMask.VueMaskDirective);
 //----------------------------------------------------------
 
-//ŒÔÂ‰ÂÎÂÌËÂ ÍÓÏÔÓÌÂÌÚ‡ ‚ÒÔÎ˚‚‡˛˘Â„Ó ÓÍÌ‡
+//??????????? ??????????
   Vue.component('v-dialog', {
     template: '#dialog-template',
     data: function() {
@@ -62,33 +62,11 @@ components: {
       }
     }
   })
-// ÍÓÌÂˆ - ŒÔÂ‰ÂÎÂÌËÂ ÍÓÏÔÓÌÂÌÚ‡ ‚ÒÔÎ˚‚‡˛˘Â„Ó ÓÍÌ‡
-//---------------------------------------------------------
-// ŒÕÀ¿…Õ –¿—◊≈“ —“Œ»ÃŒ—“» «¿œ◊¿—“≈… » Õ¿À»◊»≈ Õ¿ — À¿ƒ≈ - ÙÓÏ‡ 4
-  new Vue({
-    el: "#app-form4",
-    data: {
-      form:{
-        IName:"",
-        IPhone:"",
-        IVINcode:"",
-        IMessage: "",
-        chekedBS: false
-      }
-    },
-    methods: {
-      onClick:function(){
-        this.$http.post('/api', data|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
-           console.log('saved', response);
-          },function(response) {
-            console.log('error', response);
-          }); 
-      }
-    }
-  });
+// ??? - ??????????? ??????????
+
 
 //----------------------------------------------------------
-//ŒÔÂ‰ÂÎÂÌËÂ ÍÓÏÔÓÌÂÌÚ‡ ‚ÒÔÎ˚‚‡˛˘Â„Ó ÓÍÌ‡
+//??????????? ??????????
   Vue.component('v-dialog-a', {
     template: '#dialog-template-a',
     data: function() {
@@ -112,119 +90,226 @@ components: {
       }
     }
   })
-// ÍÓÌÂˆ - ŒÔÂ‰ÂÎÂÌËÂ ÍÓÏÔÓÌÂÌÚ‡ ‚ÒÔÎ˚‚‡˛˘Â„Ó ÓÍÌ‡
-// ŒÕ-À¿…Õ –¿—◊≈“ —“Œ»ÃŒ—“» œÀ¿ÕŒ¬Œ√Œ “Œ - ÙÓÏ‡ 1
+// ??? - ??????????? ??????????
+// ?-?? ??? ?????????? ? - ???1
 new Vue({
             el: "#app-form1",
-			data:{
-				Marks: {
-					"Hyundai": ["Solaris", "Accent"],					
-					"Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]					
-				},
-				mileages:[
-						"15",	
-						 "30",
-						 "45",
-						 "60",
-						 "75",
-						 "90",
-						 "105",
-						 "120",
-						 "135",
-						 "150",
-						 "165",
-						 "180",
-						 "195",
-						 "210",
-						 "225",
-						 "240"
-					],
-				selectedMark: "",
-				selectedModel: "",
-				selectedMileage: "",
-				aMarks: [],
-				aModel: []
-				
-			},
-			methods:{
-				onClick:function(){
-					
-					/*var dJSON = {selectedMark:this.selectedMark,selectedModel:this.selectedModel,selectedMileage:this.selectedMileage};
-					console.log('js', dJSON|json);//{   emulateJSON: true,emulateHTTP:true }
-					this.$http.post('/api', dJSON|json).then(function(response) {
-				         console.log('saved', response);
-				        },function(response) {
-				          console.log('error', response);
-				        });
-					*/
-					this.selectedMileage = this.selectedModel = this.selectedMark = "";	
-				}
-			},
-			watch: {
-				selectedMark: function() {
-					// Clear previously selected values
-					this.aMarks = [];
-					this.aModel = [];
-					this.selectedModel = "";
-					this.selectedMileage = "";
-					// Populate list of marks in the second dropdown
-					if (this.selectedMark.length > 0) {
-						this.aMarks = this.Marks[this.selectedMark];
-					}
-					else{
-						this.aMarks = [];
-						this.aModel = [];
-						this.selectedModel = "";
-						this.selectedMileage = "";
-					}
-				},
-				selectedModel: function() {
-					// Clear previously selected values
-					this.aModel = [];
-					this.selectedMileage = "";
-					// Now we have a continent and country. Populate list of model in the third dropdown
-					if (this.selectedModel.length > 0) {
-						this.aModel = this.mileages;
-					}
-					else{
-						this.aModel = [];
-						this.selectedMileage = "";
-					}
-				}
-			}
+            data:{
+                Marks: {
+                    "Hyundai": ["Solaris", "Accent"],                   
+                    "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]                   
+                },
+                mileages:[
+                        "15",   
+                         "30",
+                         "45",
+                         "60",
+                         "75",
+                         "90",
+                         "105",
+                         "120",
+                         "135",
+                         "150",
+                         "165",
+                         "180",
+                         "195",
+                         "210",
+                         "225",
+                         "240"
+                    ],
+                selectedMark: "",
+                selectedModel: "",
+                selectedMileage: "",
+                aMarks: [],
+                aModel: []
+                
+            },
+            methods:{
+                onClick:function(){
+                    
+                    /*var dJSON = {selectedMark:this.selectedMark,selectedModel:this.selectedModel,selectedMileage:this.selectedMileage};
+                    console.log('js', dJSON|json);//{   emulateJSON: true,emulateHTTP:true }
+                    this.$http.post('/api', dJSON|json).then(function(response) {
+                         console.log('saved', response);
+                        },function(response) {
+                          console.log('error', response);
+                        });
+                    */
+                    this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+                }
+            },
+            watch: {
+                selectedMark: function() {
+                    // Clear previously selected values
+                    this.aMarks = [];
+                    this.aModel = [];
+                    this.selectedModel = "";
+                    this.selectedMileage = "";
+                    // Populate list of marks in the second dropdown
+                    if (this.selectedMark.length > 0) {
+                        this.aMarks = this.Marks[this.selectedMark];
+                    }
+                    else{
+                        this.aMarks = [];
+                        this.aModel = [];
+                        this.selectedModel = "";
+                        this.selectedMileage = "";
+                    }
+                },
+                selectedModel: function() {
+                    // Clear previously selected values
+                    this.aModel = [];
+                    this.selectedMileage = "";
+                    // Now we have a continent and country. Populate list of model in the third dropdown
+                    if (this.selectedModel.length > 0) {
+                        this.aModel = this.mileages;
+                    }
+                    else{
+                        this.aModel = [];
+                        this.selectedMileage = "";
+                    }
+                }
+            }
         });
-//‘ÓÏ‡ Á‡ÔËÒË
+//–§–æ—Ä–º–∞ –∑–∞–ø–∏—Å–∏
 
 new Vue({
-            el: "#app-callback",
-		data:{
-			form:{
-				IName:"",
-				IPhone:"",
-				IMail:"",
-				chekedBS: false
-			}
-		},
-		methods:{
-			onClick:function(){
-				console.log('saved',data.form|json);
-				this.$http.post('/api', data.form|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
-			         console.log('saved', response);
-			        },function(response) {
-			          console.log('error', response);
-			        });	
-			}
-		},
-		
-		validations: {
-		    form:{
-			IPhone:{
-				d:''
-				},
-			IMail:{
-				email:''
-				}
-			}
-		}
-			
+            el: "#app-callback1",
+        data:{
+            form:{
+                IName:"",
+                IPhone:"",
+                IMail:"",
+                chekedBS: false
+            }
+        },
+        methods:{
+            onClick:function(){
+                console.log('saved',data.form|json);
+                this.$http.post('/api', data.form|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
+                     console.log('saved', response);
+                    },function(response) {
+                      console.log('error', response);
+                    }); 
+            }
+        },
+        
+        validations: {
+            form:{
+            IPhone:{
+                d:''
+                },
+            IMail:{
+                email:''
+                }
+            }
+        }
+            
+        });
+        
+new Vue({
+            el: "#app-form2",
+            data:{
+                form:{
+                    IName:"",
+                    IPhone:"",
+                    IMessage: "",
+                    chekedBS: false,
+                    disabled: true,
+                }
+            },
+            methods:{
+                onClick:function(){
+                    this.$http.post('/api', data.form|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
+                         console.log('saved', response);
+                        },function(response) {
+                          console.log('error', response);
+                        }); 
+                }
+            }
+        });
+        
+        //---------------------------------------------------------
+// –û–ù–õ–ê–ô–ù –†–ê–°–ß–ï–¢ –°–¢–û–ò–ú–û–°–¢–ò –ó–ê–ü–ß–ê–°–¢–ï–ô –ò –ù–ê–õ–ò–ß–ò–ï –ù–ê –°–ö–õ–ê–î–ï - —Ñ–æ—Ä–º–∞ 4
+  new Vue({
+    el: "#app-callback2",
+    data: {
+      form:{
+        IName:"",
+        IPhone:"",
+        IVINcode:"",
+        IMessage: "",
+        chekedBS: false
+      }
+    },
+    methods: {
+      onClick:function(){
+        this.$http.post('/api', data|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
+           console.log('saved', response);
+          },function(response) {
+            console.log('error', response);
+          }); 
+      }
+    }
+  });
+  new Vue({
+            el: "#app-form4",
+            data:{
+                form:{
+                    IName:"",
+                    IPhone:"",
+                    IVINcode:"",
+                    IMessage: "",
+                    chekedBS: false
+                }
+            },
+            methods:{
+                onClick:function(){
+                    this.$http.post('/api', data|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
+                         console.log('saved', response);
+                        },function(response) {
+                          console.log('error', response);
+                        }); 
+                }
+            }
+            
+        });
+
+
+new Vue({
+            el: "#app-form3",
+        data:{
+            form:{
+                IName:"",
+                IPhone:"",
+                IMail:"",
+                IMessage:"",
+                chekedBS: false
+            }
+        },
+        methods:{
+              submitForm: function(e) {
+                e.preventDefault();
+
+                var formData = new FormData();
+                var files = this.$refs.fileInputs.files;
+                console.log(this.$refs);
+                console.log(files);
+                formData.append('IName', this.form.IName);
+                formData.append('IPhone', this.form.IPhone);
+                formData.append('IMail', this.form.IMail);
+                formData.append('IMessage', this.form.IMessage);
+                formData.append('chekedBS', this.form.chekedBS);
+                for(var key in files){
+                    console.log(key);
+                    formData.append('more_image_['+key+']', files[key]);
+                }
+                 this.$http.post('/my/post/url', form, function (data, status, request) {
+                     console.log('success');
+                 }).error(function (data, status, request) {
+                     console.log('error');
+                 });
+                }
+        }
+            
         });
