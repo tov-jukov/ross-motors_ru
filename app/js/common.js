@@ -193,8 +193,15 @@ new Vue({
         },
         methods:{
             onClick:function(){
-                console.log(this._data.form);
-                console.log(this.form);
+                // _I
+                var data = this.form;
+                console.log(data);
+                // _II_
+                var data1 = JSON.parse(JSON.stringify(this.form));
+                console.log(data1);
+                data1.project_name=init_form_data.project_name;
+                data1.admin_email=init_form_data.admin_email;
+                console.log(data1);
                  /*this.$http.post('/mail.php', data.form|json, function (data, status, request) {
                      console.log('success');
                  }).error(function (data, status, request) {

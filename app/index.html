@@ -47,7 +47,9 @@
                             <div class="phone-1"><i class="fa fa-mobile" aria-hidden="true"></i> +7 (3435) 499-330</div>
                             <div class="phone-1"><i class="fa fa-mobile" aria-hidden="true"></i> +7 (922) 17-71-979</div>
                         </div>
-                        <div class="adress-nt"><i class="fa fa-map-marker" aria-hidden="true"></i> г. Нижний Тагил, ул. М. Горького, 41</div>
+                        <div class="adress-nt">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> г. Нижний Тагил, ул. М. Горького, 41
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,13 +74,19 @@
         <div class="header-content clearfix">
             <div class="container">
                 <div class="row">
-                    <!-- заголовок -->
+                    <!-- строка1 -->
+                    <!-- заголовок h1 -->
                     <div class="col-md-10 col-sm-12 col-xs-12">
                         <h1 class="">Техобслуживание и ремонт</h1>
                     </div>
-                    <!-- end заголовок -->
+                    <!-- end заголовок h1 -->
+                    <div class="col-md-2">
+                    </div>
                 </div>
+                <!-- end строка1 -->
                 <div class="row">
+                    <!-- строка2 -->
+                    <!-- f1 -->
                     <div class="contaiter">
                         <div class="row">
                             <div class="col-md-6">
@@ -88,6 +96,7 @@
                                             <div class="col-md-6">
                                                 <div class="container">
                                                     <div class="row">
+                                                        <!-- строка логотипы большие -->
                                                         <div class="col-md-6 col-sm-12 col-sx-12">
                                                             <div class="wrap-img">
                                                                 <img src="img/emblem/kia.png" alt="" class="emblem-big">
@@ -95,6 +104,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- end строка логотипы большие -->
                                                     <div class="row">
                                                         <!-- строка логотипы малые -->
                                                         <div class="col-md-6 col-sm-12 col-sx-12">
@@ -123,17 +133,20 @@
                             </div>
                         </div>
                     </div>
+                    <!-- end f1 -->
                 </div>
+                <!-- end строка2 -->
                 <div class="row">
+                    <!-- строка3 -->
                     <!-- кнопка и машинка-->
                     <div class="container clearfix">
                         <div class="row">
                             <div class="col-md-6 text-center">
                                 <div class="btn-wrap">
                                     <!--a href="#" class="button">Записаться</a-->
-                                    <div class="wrap-f" class="forms-wrap">
+                                    <div class="wrap-f forms-wrap">
                                         <div id="app-callback1">
-                                            <!--пример как используется четвёртая модальная форма -->
+                                            <!--форма и кнопка заказать обратный звонок -->
                                             <v-dialog button_text="Записаться" button_style="button">
                                                 <h4>Записаться</h4>
                                                 <p>Спасибо, что выбрали нас!
@@ -150,11 +163,11 @@
                                                         </label>
                                                         </br>
                                                         <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                                                        <input type="submit" value="Заказать звонок" v-on:click="onClick" :disabled="form.chekedBS == false" />
+                                                        <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
                                                         <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
                                                     </form>
                                             </v-dialog>
-                                            <!--пример как используется вторая модальная форма -->
+                                            <!-- end форма и кнопка заказать обратный звонок -->
                                         </div>
                                     </div>
                                 </div>
@@ -167,13 +180,14 @@
                         </div>
                     </div>
                     <!-- end кнопка и машинка-->
-                    <div class="row">
+                    <div class="row clearfix">
                         <div class="col-md-6 hidden-sm hidden-xs">
                             <div class="garant">С сохранением гарантии у дилера
                                 <br>Бесплатная программа "Помощь на дорогах"</div>
                         </div>
                     </div>
                 </div>
+                <!-- end строка3 -->
             </div>
         </div>
     </header>
@@ -215,40 +229,28 @@
                                 </v-dialog-a>
                             </div>
                         </div>
-<div class="wrap-f">
-<div  id="app-form3">
-                <v-dialog-a   name_form = "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА">
-                <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА</h4>
-                <p>Вам достаточно сфотографировать повреждения своего а/м и выслать фотографии нам!</p>
-            <!--action="/file-upload" method="post"-->
-              <form   >
-                    Имя*
-                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName"/>
-                    Телефон*:
-                    <input type="text"  v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
-                    Укажите вашу эл.почту
-                    <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" />
-                    
-                    Загрузить фото:
-                        
-                    <input ref="fileInputs" type="file" name="file" multiple   />
-                    
-                    </br>Описание повреждений:
-                    <textarea  type="comment" id="inputMessage"  name="message" rows="3" placeholder="Описание повреждений" v-model="form.IMessage"></textarea>
-                    <label><span class = "red">*</span>– обязательные поля.
-                    Расчет Вы получите в течение 15 минут.</label></br>
-                    <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS"/>
-                    Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                    <input type="submit" value="Отправить" v-on:click="submitForm" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''"/>
-              </form>
-                
-                </v-dialog-a>
-                
-                </div>
-            </div>
-
-
-                        
+                        <div class="wrap-f">
+                            <div id="app-form3">
+                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА">
+                                    <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА</h4>
+                                    <p>Вам достаточно сфотографировать повреждения своего а/м и выслать фотографии нам!</p>
+                                    <!--action="/file-upload" method="post"-->
+                                    <form>
+                                        Имя*
+                                        <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
+                                        <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Укажите вашу эл.почту
+                                        <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" /> Загрузить фото:
+                                        <input ref="fileInputs" type="file" name="file" multiple />
+                                        </br>Описание повреждений:
+                                        <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений" v-model="form.IMessage"></textarea>
+                                        <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
+                                        </br>
+                                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                                        <input type="submit" value="Отправить" v-on:click="submitForm" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''" />
+                                    </form>
+                                </v-dialog-a>
+                            </div>
+                        </div>
                         <!--<a href="#myModal1" type="submit" data-toggle="modal">
                             <div class="section-class-item">
                                 <div class="item-icon text-left">
