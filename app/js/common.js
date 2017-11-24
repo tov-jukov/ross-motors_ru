@@ -1,4 +1,6 @@
 "use strict";
+
+//слайдер
 new Vue({
   el: '#vueapp',
   data: {
@@ -25,11 +27,12 @@ components: {
     'slide': Carousel3d.Slide
   }
 });
+//end слайдер
 
 //---????????----------------------------------------
 init_form_data = {
     project_name: 'Росс-Моторс',
-    admin_email: 'tov-jukof@ya.ru'
+    admin_email: ''
 }
 
 //import { validationMixin } from 'vuelidate'
@@ -66,7 +69,29 @@ init_form_data = {
     }
   })
 // ??? - ??????????? ??????????
-
+Vue.component('v-dialog-menu-a', {
+    template: '#dialog-template-menu-a',
+    data: function() {
+      return {
+        active: false,
+      }
+    },
+    props: ['name_form'],
+    methods: {
+      open: function() {
+        this.active = true
+      },
+      close: function() {
+        this.active = false
+      },
+      onCancel: function() {
+        this.close();
+      },
+      onConfirm: function() {
+        this.close();
+      }
+    }
+  })
 
 //----------------------------------------------------------
 //??????????? ??????????
@@ -95,8 +120,96 @@ init_form_data = {
   })
 // ??? - ??????????? ??????????
 // ?-?? ??? ?????????? ? - ???1
+/*Vue.component("calculation-to", {
+  template:"#calculation-to-template",
+  data:function(){
+      return {
+            Marks: {
+                "Hyundai": ["Solaris", "Accent"],
+                "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]                   
+            },
+            mileages:[
+                    "15",   
+                     "30",
+                     "45",
+                     "60",
+                     "75",
+                     "90",
+                     "105",
+                     "120",
+                     "135",
+                     "150",
+                     "165",
+                     "180",
+                     "195",
+                     "210",
+                     "225",
+                     "240"
+                ],
+            selectedMark: "",
+            selectedModel: "",
+            selectedMileage: "",
+            aMarks: [],
+            aModel: [],
+            form_subject: "Форма 'Он-лайн расчет стоимости планового ТО'",
+            project_name: init_form_data.project_name
+        }
+  },
+    methods:{
+      onClick:function(){
+        var formData = new FormData();
+        formData.append('selectedMark', this.selectedMark);
+        formData.append('selectedModel', this.selectedModel);
+        formData.append('selectedMileage', this.selectedMileage);
+        formData.append('form_subject', this.form_subject);
+        formData.append('project_name', this.project_name);
+        conslole.log(formData);
+        var json_data = JSON.parse(JSON.stringify(formData));
+        //json_data.project_name=init_form_data.project_name;
+        console.log(json_data);
+        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        .then(function(response){console.log('success');console.log(response);})
+        .catch(function(e){console.log(e)});
+         this.selectedMileage = this.selectedModel = this.selectedMark = "";
+      },
+    watch: {
+        selectedMark: function() {
+            // Clear previously selected values
+            this.aMarks = [];
+            this.aModel = [];
+            this.selectedModel = "";
+            this.selectedMileage = "";
+            // Populate list of marks in the second dropdown
+            if (this.selectedMark.length > 0) {
+                this.aMarks = this.Marks[this.selectedMark];
+            }
+            else{
+                this.aMarks = [];
+                this.aModel = [];
+                this.selectedModel = "";
+                this.selectedMileage = "";
+            }
+        },
+        selectedModel: function() {
+            // Clear previously selected values
+            this.aModel = [];
+            this.selectedMileage = "";
+            // Now we have a continent and country. Populate list of model in the third dropdown
+            if (this.selectedModel.length > 0) {
+                this.aModel = this.mileages;
+            }
+            else{
+                this.aModel = [];
+                this.selectedMileage = "";
+            }
+        }
+    }
+  }
+
+});
+new Vue({el:"#form-calculation-to"});*/
 new Vue({
-            el: "#app-form1",
+            el: "#form-calculation-to",
             data:{
                 Marks: {
                     "Hyundai": ["Solaris", "Accent"],
@@ -130,16 +243,20 @@ new Vue({
             },
             methods:{
                 onClick:function(){
-                    
-                    /*var dJSON = {selectedMark:this.selectedMark,selectedModel:this.selectedModel,selectedMileage:this.selectedMileage};
-                    console.log('js', dJSON|json);//{   emulateJSON: true,emulateHTTP:true }
-                    this.$http.post('/api', dJSON|json).then(function(response) {
-                         console.log('saved', response);
-                        },function(response) {
-                          console.log('error', response);
-                        });
-                    */
-                    this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+                    var formData = new FormData();
+                    formData.append('selectedMark', this.selectedMark);
+                    formData.append('selectedModel', this.selectedModel);
+                    formData.append('selectedMileage', this.selectedMileage);
+                    formData.append('form_subject', this.form_subject);
+                    formData.append('project_name', this.project_name);
+                    conslole.log(formData);
+                    var json_data = JSON.parse(JSON.stringify(formData));
+                    json_data.project_name=init_form_data.project_name;
+                    console.log(json_data);
+                    axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+                    .then(function(response){console.log('success');console.log(response);})
+                    .catch(function(e){console.log(e)});
+                     this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
                 }
             },
             watch: {
@@ -175,130 +292,161 @@ new Vue({
                 }
             }
         });
-//Форма записи
+
+//Форма обратного звонка callback
 //project_name - название проекта
 //admin_email - адрес приёма корреспонденции
 //form_subject - форма отправитель
+Vue.component("callback", {
+  template:"#callback-template",
+  data:function(){
+      return {
+        form:{
+          IName:"",
+          IPhone:"",
+          IMail:"",
+          form_subject: "Форма заказать звонок",
+          chekedBS: false
+          }
+        }
+  },
+    methods:{
+      onClick:function(){
+        
+        var json_data = JSON.parse(JSON.stringify(this.form));
+        json_data.project_name=init_form_data.project_name;
+        console.log(json_data);
+        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        .then(function(response){console.log('success');console.log(response);})
+        .catch(function(e){console.log(e)})
+      }
+  }
 
+});
 new Vue({
             el: "#app-callback1",
-        data:{
-            form:{
-                IName:"",
-                IPhone:"",
-                IMail:"",
-                form_subject: "Форма заказать звонок",
-                chekedBS: false
-            }
-        },
-        methods:{
-            onClick:function(){
-                // _I
-                var data = this.form;
-                console.log(data);
-                // _II_
-                var data1 = JSON.parse(JSON.stringify(this.form));
-                console.log(data1);
-                data1.project_name=init_form_data.project_name;
-                data1.admin_email=init_form_data.admin_email;
-                console.log(data1);
-                 /*this.$http.post('/mail.php', data.form|json, function (data, status, request) {
-                     console.log('success');
-                 }).error(function (data, status, request) {
-                     console.log('error');
-                 });
-                /*this.$http.post('/js/', data.form|json, { emulateJSON: true,emulateHTTP:true }).then(function(response) {
-                     console.log('saved', response);
-                    },function(response) {
-                      console.log('error', response);
-                    }); */
-            }
-        },
-        
-        validations: {
-            form:{
-            IPhone:{
-                d:''
-                },
-            IMail:{
-                email:''
-                }
-            }
-        }
-            
-        });
-        
+});
 new Vue({
-            el: "#app-form2",
-            data:{
-                form:{
-                    IName:"",
-                    IPhone:"",
-                    IMessage: "",
-                    chekedBS: false,
-                    disabled: true,
-                }
-            },
-            methods:{
-                onClick:function(){
-                    this.$http.post('/api', data.form|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
-                         console.log('saved', response);
-                        },function(response) {
-                          console.log('error', response);
-                        }); 
-                }
-            }
+            el: "#app-callback2",
+});
+new Vue({
+            el: "#app-callback3",
+});
+new Vue({
+            el: "#app-callback4",
+});
+// -- end callback
+// -- ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА
+
+Vue.component("calculation-locksmith-repair", {
+  template:"#calculation-locksmith-repair-template",
+  data:function(){
+      return {
+        form:{
+            IName:"",
+            IPhone:"",
+            IMessage: "",
+            disabled: true,
+            form_subject: "Форма заказать звонок",
+            chekedBS: false
+          }
+        }
+  },
+    methods:{
+      onClick:function(){
+        
+        var json_data = JSON.parse(JSON.stringify(this.form));
+        json_data.project_name=init_form_data.project_name;
+        console.log(json_data);
+        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        .then(function(response){console.log('success');console.log(response);})
+        .catch(function(e){console.log(e)})
+      }
+  }
+
+});
+new Vue({
+            el: "#form-calculation-locksmith-repair",
         });
         
         //---------------------------------------------------------
 // ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ - форма 4
-  new Vue({
-    el: "#app-callback2",
-    data: {
-      form:{
-        IName:"",
-        IPhone:"",
-        IVINcode:"",
-        IMessage: "",
-        chekedBS: false
-      }
-    },
-    methods: {
+//calculation-zip-warehouse-template
+Vue.component("calculation-zip-warehouse", {
+  template:"#calculation-zip-warehouse-template",
+  data:function(){
+      return {
+        form:{
+            IName:"",
+            IPhone:"",
+            IVINcode:"",
+            IMessage: "",
+            form_subject: "Форма заказать звонок",
+            chekedBS: false
+          }
+        }
+  },
+    methods:{
       onClick:function(){
-        this.$http.post('/api', data|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
-           console.log('saved', response);
-          },function(response) {
-            console.log('error', response);
-          }); 
+        
+        var json_data = JSON.parse(JSON.stringify(this.form));
+        json_data.project_name=init_form_data.project_name;
+        console.log(json_data);
+        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        .then(function(response){console.log('success');console.log(response);})
+        .catch(function(e){console.log(e)})
       }
-    }
-  });
+  }
+
+});
   new Vue({
-            el: "#app-form4",
-            data:{
-                form:{
-                    IName:"",
-                    IPhone:"",
-                    IVINcode:"",
-                    IMessage: "",
-                    chekedBS: false
-                }
-            },
-            methods:{
-                onClick:function(){
-                    this.$http.post('/api', data|json, {   emulateJSON: true,emulateHTTP:true }).then(function(response) {
-                         console.log('saved', response);
-                        },function(response) {
-                          console.log('error', response);
-                        }); 
-                }
-            }
+            el: "#form-calculation-zip-warehouse",
             
         });
 
+// ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА
+Vue.component("calculation-bodywork", {
+  template:"#calculation-bodywork-template",
+  data:function(){
+      return {
+            form:{
+                IName:"",
+                IPhone:"",
+                IMail:"",
+                IMessage:"",
+                form_subject: "Форма заказать звонок",
+                chekedBS: false
+              }
+        }
+  },
+      methods:{
+              submitForm: function(e) {
+                e.preventDefault();
 
+                var formData = new FormData();
+                var files = this.$refs.fileInputs.files;
+                console.log(this.$refs);
+                console.log(files);
+                formData.append('IName', this.form.IName);
+                formData.append('IPhone', this.form.IPhone);
+                formData.append('IMail', this.form.IMail);
+                formData.append('IMessage', this.form.IMessage);
+                formData.append('chekedBS', this.form.chekedBS);
+                formData.append('project_name', init_form_data.project_name);
+                for(var key in files){
+                    console.log(key);
+                    formData.append('more_image_['+key+']', files[key]);
+                }
+                 axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+                    .then(function(response){console.log('success');console.log(response);})
+                    .catch(function(e){console.log(e)})
+                }
+            }
+});
+new Vue({el:"#form-calculation-bodywork"});
+/*
 new Vue({
-            el: "#app-form3",
+            el: "#app-calculation-bodywork",
         data:{
             form:{
                 IName:"",
@@ -334,3 +482,4 @@ new Vue({
         }
             
         });
+*/
