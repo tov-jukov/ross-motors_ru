@@ -654,7 +654,7 @@
                         <label><span class="red">*</span>– обязательные поля.
                         </label>
                         </br>
-                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a  href="./personaldata.html" class="link" target="_blank">персональных данных</a>
                         <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
                         <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
                     </form>
@@ -706,7 +706,7 @@
                 <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
                 <p>Спасибо, что выбрали нас!</p>
                 <form id="form4">
-                    Имя*
+                    <p>Имя*</p>
                     <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
                     <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> VIN-код
                     <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> Список запчастей*:
