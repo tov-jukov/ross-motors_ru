@@ -28,7 +28,8 @@
         background-color: #fff;
     }
     </style>
-    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps"></script>
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps">
+    </script>
 </head>
 
 <body>
@@ -59,13 +60,15 @@
                         <nav class="main-mnu main-mnu-bg hidden-md hidden-sm hidden-xs">
                             <ul>
                                 <li class="activ"><a href="#">Главная</a></li>
-                                <li><a href="#">Прайс-лист</a></li>
+                                <li><a href="price.html">Прайс-лист</a></li>
                                 <li><a href="#">О нас</a></li>
                                 <li><a href="#">Наши гарантии</a></li>
                                 <li id="app-callback4">
                                     <v-dialog-menu-a name_form="Запись на прием">
-                                    <callback></callback>
-                                    </v-dialog-menu-a><!--a href="#">Запись на прием</a--></li>
+                                        <callback></callback>
+                                    </v-dialog-menu-a>
+                                    <!--a href="#">Запись на прием</a-->
+                                </li>
                                 <li><a href="#">Контакты</a></li>
                                 <li><a href="#">Онлайн оплата</a></li>
                             </ul>
@@ -185,7 +188,7 @@
                     <div class="items-left">
                         <div class="wrap-f">
                             <div id="form-calculation-to">
-                                <v-dialog-a name_form="ОНЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО">
+                                <v-dialog-a name_form="ОНЛАЙН РАСЧЕТ <br/> СТОИМОСТИ ПЛАНОВОГО ТО">
                                     <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
                                     <p>Спасибо, что выбрали нас!</p>
                                     <form>
@@ -210,14 +213,14 @@
                                                 <option v-for="val in this.aModel">{{val}}</option>
                                             </select>
                                         </div>
-                                        <input type="submit" value="Отправить" @click="onClick" :disabled="aModel.length == 0 || selectedMileage == ''" />
+                                        <input type="submit" value="Отправить" v-on:click.prevent ="onClick" :disabled="aModel.length == 0 || selectedMileage == ''" />
                                     </form>
                                 </v-dialog-a>
                             </div>
                         </div>
                         <div class="wrap-f">
                             <div id="form-calculation-bodywork">
-                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА">
+                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ <br/> СТОИМОСТИ КУЗОВНОГО РЕМОНТА">
                                     <calculation-bodywork></calculation-bodywork>
                                 </v-dialog-a>
                             </div>
@@ -249,14 +252,14 @@
                     <div class="items-left">
                         <div class="wrap-f">
                             <div id="form-calculation-locksmith-repair">
-                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА">
+                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ <br/> СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА">
                                     <calculation-locksmith-repair></calculation-locksmith-repair>
                                 </v-dialog-a>
                             </div>
                         </div>
                         <div class="wrap-f">
                             <div id="form-calculation-zip-warehouse">
-                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ">
+                                <v-dialog-a name_form="ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ <br/> ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ">
                                     <calculation-zip-warehouse></calculation-zip-warehouse>
                                 </v-dialog-a>
                             </div>
@@ -284,7 +287,8 @@
                     </div>
                 </div>
             </div>
-        </div </section>
+        </div>
+     </section>
         <!-- end -->
         <section class="rm-wrap">
             <div class="container">
@@ -305,8 +309,7 @@
                                     <!-- end форма и кнопка заказать обратный звонок -->
                                 </div>
                             </div>
-                                    <!--a href="#" class="button">Записаться на обслуживание и ремонт</a-->
-
+                            <!--a href="#" class="button">Записаться на обслуживание и ремонт</a-->
                         </div>
                     </div>
                 </div>
@@ -628,94 +631,94 @@
                             <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
                         </div>
                         <div class="item-text text-left">
-                            <h3>{{name_form}}</h3>
+                            <h3 v-html = "name_form"></h3>
                         </div>
                     </div>
                 </a>
                 <!--p class="button-black" id="show-modal"@click="open()">{{button_text}}</p-->
             </div>
         </template>
-    <template id="callback-template">
-      <div>
-        <h4>Записаться</h4>
-        <p>Спасибо, что выбрали нас!
-        <br/>
-        <form>
-            Имя
-            <input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" /> Телефон*:
-            <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
-            <!--spam v-show="$v.form.IPhone.required && !$v.form.IPhone.minLength" class="red">Укажите номер телефона!</br></spam-->
-            Укажите вашу эл.почту
-            <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" />
-            <!--spam v-show="!$v.form.IMail.email" class="red">Корректно введите эл.почту!</br></spam-->
-            <label><span class="red">*</span>– обязательные поля.
-            </label>
-            </br>
-            <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-            <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
-            <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
-        </form>
-      </div>
-    </template>
-    <!--template id = "calculation-to-template">
+        <template id="callback-template">
+            <div>
+                <h4>Записаться</h4>
+                <p>Спасибо, что выбрали нас!
+                    <br/>
+                    <form>
+                        Имя
+                        <input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" /> Телефон*:
+                        <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+                        <!--spam v-show="$v.form.IPhone.required && !$v.form.IPhone.minLength" class="red">Укажите номер телефона!</br></spam-->
+                        Укажите вашу эл.почту
+                        <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" />
+                        <!--spam v-show="!$v.form.IMail.email" class="red">Корректно введите эл.почту!</br></spam-->
+                        <label><span class="red">*</span>– обязательные поля.
+                        </label>
+                        </br>
+                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                        <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
+                        <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
+                    </form>
+            </div>
+        </template>
+        <!--template id = "calculation-to-template">
         <div>
         
     </div>
     </template-->
-    <template id = "calculation-bodywork-template">
-        <div>
-        <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА</h4>
-        <p>Вам достаточно сфотографировать повреждения своего а/м и выслать фотографии нам!</p>
-        <!--action="/file-upload" method="post"-->
-        <form>
-            Имя*
-            <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-            <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Укажите вашу эл.почту
-            <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" /> Загрузить фото:
-            <input ref="fileInputs" type="file" name="file" multiple />
-            </br>Описание повреждений:
-            <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений" v-model="form.IMessage"></textarea>
-            <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
-            </br>
-            <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-            <input type="submit" value="Отправить" v-on:click="submitForm" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''" />
-        </form>
-    </div>
-    </template>
-    <template id = "calculation-locksmith-repair-template">
-        <div>
-            <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА</h4>
-            <p>Спасибо, что выбрали нас!</p>
-            <form>
-                Имя*
-                <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-                <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Виды запчастей*:
-                <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
-                <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
-                </br>
-                <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                <input type="submit" value="Отправить" v-on:click="onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == '' || form.IMessage == ''" />
-            </form>
-        </div>
-    </template>
-    <template id = "calculation-zip-warehouse-template">
-        <div>
-            <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
-            <p>Спасибо, что выбрали нас!</p>
-            <form id="form4">
-                Имя*
-                <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-                <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> VIN-код
-                <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> Список запчастей*:
-                <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
-                <label><span class="red">*</span>– обязательные поля.
-                </label>
-                </br>
-                <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                <input type="submit" value="Отправить" @click="onClick" :disabled="form.chekedBS == false" />
-            </form>
-        </div>
-    </template>
+        <template id="calculation-bodywork-template">
+            <div>
+                <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА</h4>
+                <p>Вам достаточно сфотографировать повреждения своего а/м и выслать фотографии нам!</p>
+                <!--action="/file-upload" method="post"-->
+                <form>
+                    Имя*
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Укажите вашу эл.почту
+                    <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" /> Загрузить фото:
+                    <input ref="fileInputs" type="file" name="file" multiple />
+                    </br>Описание повреждений:
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений" v-model="form.IMessage"></textarea>
+                    <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
+                    </br>
+                    <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''" />
+                </form>
+            </div>
+        </template>
+        <template id="calculation-locksmith-repair-template">
+            <div>
+                <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА</h4>
+                <p>Спасибо, что выбрали нас!</p>
+                <form>
+                    Имя*
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Виды запчастей*:
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
+                    <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
+                    </br>
+                    <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == '' || form.IMessage == ''" />
+                </form>
+            </div>
+        </template>
+        <template id="calculation-zip-warehouse-template">
+            <div>
+                <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
+                <p>Спасибо, что выбрали нас!</p>
+                <form id="form4">
+                    Имя*
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> VIN-код
+                    <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> Список запчастей*:
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
+                    <label><span class="red">*</span>– обязательные поля.
+                    </label>
+                    </br>
+                    <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
+                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
+                </form>
+            </div>
+        </template>
         <link rel="stylesheet" href="css/main.min.css">
         <script src="js/scripts.min.js"></script>
 </body>

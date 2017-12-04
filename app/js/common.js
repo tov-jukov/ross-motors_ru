@@ -6,19 +6,19 @@ new Vue({
   data: {
     slides: [
     {
-      url: 'img/licence/license-01.jpg'
+      url: 'assets/img/licence/license-01.jpg'
     },
 
     {
-      url: 'img/licence/license-02.jpg'
+      url: 'assets/img/licence/license-02.jpg'
     },
 
     {
-      url: 'img/licence/license-03.jpg'
+      url: 'assets/img/licence/license-03.jpg'
     },
 
     {
-      url: 'img/licence/license-04.jpg'
+      url: 'assets/img/licence/license-04.jpg'
     }
     ]
   },
@@ -237,26 +237,25 @@ new Vue({
                 selectedModel: "",
                 selectedMileage: "",
                 aMarks: [],
-                aModel: []
-
+                aModel: [],
+                form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
                 
             },
             methods:{
                 onClick:function(){
-                    var formData = new FormData();
-                    formData.append('selectedMark', this.selectedMark);
-                    formData.append('selectedModel', this.selectedModel);
-                    formData.append('selectedMileage', this.selectedMileage);
-                    formData.append('form_subject', this.form_subject);
-                    formData.append('project_name', this.project_name);
-                    conslole.log(formData);
-                    var json_data = JSON.parse(JSON.stringify(formData));
-                    json_data.project_name=init_form_data.project_name;
-                    console.log(json_data);
-                    axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
-                    .then(function(response){console.log('success');console.log(response);})
-                    .catch(function(e){console.log(e)});
-                     this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+                var formData = {
+                "selectedMark":this.selectedMark,
+                "selectedModel":this.selectedModel,
+                "selectedMileage":this.selectedMileage,
+                "form_subject":this.form_subject,
+                }
+                var json_data = JSON.parse(JSON.stringify(formData));
+                json_data.project_name=init_form_data.project_name;
+                console.log(json_data);
+                axios.post('calculation-to.php',json_data)
+                .then(function(response){console.log('success');console.log(response);})
+                .catch(function(e){console.log(e)});
+                 this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
                 }
             },
             watch: {
@@ -316,7 +315,7 @@ Vue.component("callback", {
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
-        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        axios.post('mail.php',json_data)
         .then(function(response){console.log('success');console.log(response);})
         .catch(function(e){console.log(e)})
       }
@@ -346,8 +345,7 @@ Vue.component("calculation-locksmith-repair", {
             IName:"",
             IPhone:"",
             IMessage: "",
-            disabled: true,
-            form_subject: "Форма заказать звонок",
+            form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА"',
             chekedBS: false
           }
         }
@@ -358,7 +356,7 @@ Vue.component("calculation-locksmith-repair", {
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
-        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        axios.post('mail.php',json_data)
         .then(function(response){console.log('success');console.log(response);})
         .catch(function(e){console.log(e)})
       }
@@ -381,7 +379,7 @@ Vue.component("calculation-zip-warehouse", {
             IPhone:"",
             IVINcode:"",
             IMessage: "",
-            form_subject: "Форма заказать звонок",
+            form_subject: 'Форма "ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ"',
             chekedBS: false
           }
         }
@@ -392,7 +390,7 @@ Vue.component("calculation-zip-warehouse", {
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
-        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
+        axios.post('mail.php',json_data)
         .then(function(response){console.log('success');console.log(response);})
         .catch(function(e){console.log(e)})
       }
@@ -414,32 +412,24 @@ Vue.component("calculation-bodywork", {
                 IPhone:"",
                 IMail:"",
                 IMessage:"",
-                form_subject: "Форма заказать звонок",
+                FILES:{},
+                form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"',
                 chekedBS: false
               }
         }
   },
       methods:{
-              submitForm: function(e) {
-                e.preventDefault();
-
-                var formData = new FormData();
+              onClick: function(e) {
                 var files = this.$refs.fileInputs.files;
-                console.log(this.$refs);
-                console.log(files);
-                formData.append('IName', this.form.IName);
-                formData.append('IPhone', this.form.IPhone);
-                formData.append('IMail', this.form.IMail);
-                formData.append('IMessage', this.form.IMessage);
-                formData.append('chekedBS', this.form.chekedBS);
-                formData.append('project_name', init_form_data.project_name);
-                for(var key in files){
-                    console.log(key);
-                    formData.append('more_image_['+key+']', files[key]);
-                }
-                 axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
-                    .then(function(response){console.log('success');console.log(response);})
-                    .catch(function(e){console.log(e)})
+                /*console.log(files);*/
+                var json_data = JSON.parse(JSON.stringify(this.form));
+                json_data.project_name=init_form_data.project_name;
+                json_data.FILES = files;
+                console.log(json_data);
+                axios.post('mail.php',json_data)
+                .then(function(response){console.log('success');console.log(response);})
+                .catch(function(e){console.log(e)})
+                
                 }
             }
 });
@@ -483,3 +473,72 @@ new Vue({
             
         });
 */
+
+// register the grid component
+Vue.component('demo-grid', {
+  template: '#grid-template',
+  props: {
+    data: Array,
+    columns: Array,
+    filterKey: String
+  },
+  data: function () {
+    var sortOrders = {}
+    this.columns.forEach(function (key) {
+      sortOrders[key] = 1
+    })
+    return {
+      sortKey: '',
+      sortOrders: sortOrders
+    }
+  },
+  computed: {
+    filteredData: function () {
+      var sortKey = this.sortKey
+      var filterKey = this.filterKey && this.filterKey.toLowerCase()
+      var order = this.sortOrders[sortKey] || 1
+      var data = this.data
+      if (filterKey) {
+        data = data.filter(function (row) {
+          return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+          })
+        })
+      }
+      if (sortKey) {
+        data = data.slice().sort(function (a, b) {
+          a = a[sortKey]
+          b = b[sortKey]
+          return (a === b ? 0 : a > b ? 1 : -1) * order
+        })
+      }
+      return data
+    }
+  },
+  filters: {
+    capitalize: function (str) {
+      return str.charAt(0).toUpperCase() + str.slice(1)
+    }
+  },
+  methods: {
+    sortBy: function (key) {
+      this.sortKey = key
+      this.sortOrders[key] = this.sortOrders[key] * -1
+    }
+  }
+})
+
+// bootstrap the demo
+var demo = new Vue({
+  el: '#demo',
+  data: {
+    searchQuery: '',
+    gridColumns: ['name', 'power'],
+    gridData: [
+      { name: 'Chuck Norris', power: Infinity },
+      { name: 'Bruce Lee', power: 9000 },
+      { name: 'Jackie Chan', power: 7000 },
+      { name: 'Jet Li', power: 8000 }
+    ]
+  }
+})
