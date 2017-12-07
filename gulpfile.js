@@ -35,6 +35,7 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/vue/vuelidate.min.js',
 		'app/libs/vue/validators.min.js',
 		'app/libs/vue/v-mask.min.js',
+		'app/libs/noty/noty.js',
 		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))

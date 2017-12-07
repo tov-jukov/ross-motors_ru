@@ -105,10 +105,10 @@ Vue.component('v-dialog-menu-a', {
     props: ['name_form'],
     methods: {
       open: function() {
-        this.active = true
+        this.active = true;
       },
-      close: function() {
-        this.active = false
+      close: function(id) {
+        this.active = false;
       },
       onCancel: function() {
         this.close();
@@ -208,7 +208,7 @@ Vue.component('v-dialog-menu-a', {
 
 });
 new Vue({el:"#form-calculation-to"});*/
-new Vue({
+/*new Vue({
             el: "#form-calculation-to",
             data:{
                 Marks: {
@@ -290,7 +290,7 @@ new Vue({
                     }
                 }
             }
-        });
+        });*/
 
 //Форма обратного звонка callback
 //project_name - название проекта
@@ -311,7 +311,9 @@ Vue.component("callback", {
   },
     methods:{
       onClick:function(){
-        
+        //createNoty();
+        //this.$emit('closepopup');
+        //this.$parent.$emit('changeview');
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
@@ -352,7 +354,7 @@ Vue.component("calculation-locksmith-repair", {
   },
     methods:{
       onClick:function(){
-        
+        //this.$emit("closepopup");
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
@@ -474,71 +476,113 @@ new Vue({
         });
 */
 
-// register the grid component
-Vue.component('demo-grid', {
-  template: '#grid-template',
-  props: {
-    data: Array,
-    columns: Array,
-    filterKey: String
-  },
-  data: function () {
-    var sortOrders = {}
-    this.columns.forEach(function (key) {
-      sortOrders[key] = 1
-    })
-    return {
-      sortKey: '',
-      sortOrders: sortOrders
-    }
-  },
-  computed: {
-    filteredData: function () {
-      var sortKey = this.sortKey
-      var filterKey = this.filterKey && this.filterKey.toLowerCase()
-      var order = this.sortOrders[sortKey] || 1
-      var data = this.data
-      if (filterKey) {
-        data = data.filter(function (row) {
-          return Object.keys(row).some(function (key) {
-            return String(row[key]).toLowerCase().indexOf(filterKey) > -1
-          })
-        })
-      }
-      if (sortKey) {
-        data = data.slice().sort(function (a, b) {
-          a = a[sortKey]
-          b = b[sortKey]
-          return (a === b ? 0 : a > b ? 1 : -1) * order
-        })
-      }
-      return data
-    }
-  },
-  filters: {
-    capitalize: function (str) {
-      return str.charAt(0).toUpperCase() + str.slice(1)
-    }
-  },
-  methods: {
-    sortBy: function (key) {
-      this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
-    }
-  }
-})
 
-// bootstrap the demo
-var demo = new Vue({
-  el: '#demo',
-  data: {
-    searchQuery: '',
-    gridColumns: ['name', 'power'],
-    gridData: [
-      { name: 'Chuck Norris', power: Infinity },
-      { name: 'Bruce Lee', power: 9000 },
-      { name: 'Jackie Chan', power: 7000 },
-      { name: 'Jet Li', power: 8000 }
-    ]
-  }
-})
+
+// cascad-selector-app
+
+Vue.component('cascad-selector', {
+        template: '#cascad-selector-template',
+        data: function() {
+            return {
+                Marks: {
+                    "Hyundai": ["Solaris", "Accent"],
+                    "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
+                },
+                mileages:[
+                        "15",
+                         "30",
+                         "45",
+                         "60",
+                         "75",
+                         "90",
+                         "105",
+                         "120",
+                         "135",
+                         "150",
+                         "165",
+                         "180",
+                         "195",
+                         "210",
+                         "225",
+                         "240"
+                    ],
+                form:{
+                    selectedMark: "",
+                    selectedModel: "",
+                    selectedMileage: "",
+                    aMarks: [],
+                    aModel: [],
+                    form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
+                }   
+            }
+        },
+        methods:{
+            onClick:function(){
+                 var formData = {
+                "selectedMark":this.form.selectedMark,
+                "selectedModel":this.form.selectedModel,
+                "selectedMileage":this.form.selectedMileage,
+                "form_subject":this.form.form_subject,
+                }
+                var json_data = JSON.parse(JSON.stringify(formData));
+                json_data.project_name=init_form_data.project_name;
+                console.log(json_data);
+                axios.post('calculation-to.php',json_data)
+                .then(function(response){console.log('success');console.log(response);})
+                .catch(function(e){console.log(e)});
+                 this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+            }
+        },
+        computed: {
+            selectedMark: function () {
+                return this.form.selectedMark
+            },
+            selectedModel: function () {
+                return this.form.selectedModel
+            }
+        },
+        watch: {
+            selectedMark: function() {
+                // Clear previously selected values
+                this.form.aMarks = [];
+                this.form.aModel = [];
+                this.form.selectedModel = "";
+                this.form.selectedMileage = "";
+                // Populate list of marks in the second dropdown
+                if (this.form.selectedMark.length > 0) {
+                    this.form.aMarks = this.Marks[this.form.selectedMark];
+                }
+                else{
+                    this.form.aMarks = [];
+                    this.form.aModel = [];
+                    this.form.selectedModel = "";
+                    this.form.selectedMileage = "";
+                }
+            },
+            selectedModel: function() {
+                // Clear previously selected values
+                this.form.aModel = [];
+                this.form.selectedMileage = "";
+                // Now we have a continent and country. Populate list of model in the third dropdown
+                if (this.form.selectedModel.length > 0) {
+                    this.form.aModel = this.mileages;
+                }
+                else{
+                    this.form.aModel = [];
+                    this.form.selectedMileage = "";
+                }
+            }
+        }
+    })
+
+    new Vue({
+            el: "#form-cascad-selector"
+        })
+
+function createNoty(){
+    new Noty({
+
+        text: 'Заявка отправлена',
+
+    }).show();
+};

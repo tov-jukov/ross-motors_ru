@@ -28,8 +28,8 @@
         background-color: #fff;
     }
     </style>
-    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps">
-    </script>
+    <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps"> 
+    </script> -->
 </head>
 
 <body>
@@ -153,8 +153,8 @@
                                     <div class="wrap-f forms-wrap">
                                         <div id="app-callback1">
                                             <!--форма и кнопка заказать обратный звонок -->
-                                            <v-dialog button_text="Записаться" button_style="button">
-                                                <callback></callback>
+                                            <v-dialog button_text="Записаться" button_style="button" >
+                                                <callback ></callback>
                                             </v-dialog>
                                             <!-- end форма и кнопка заказать обратный звонок -->
                                         </div>
@@ -187,34 +187,35 @@
                 <div class="col-md-5">
                     <div class="items-left">
                         <div class="wrap-f">
-                            <div id="form-calculation-to">
+                            <div id="form-cascad-selector"> <!-- id="form-calculation-to" -->
                                 <v-dialog-a name_form="ОНЛАЙН РАСЧЕТ <br/> СТОИМОСТИ ПЛАНОВОГО ТО">
-                                    <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
+                                    <cascad-selector></cascad-selector>
+                                 <!--   <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
                                     <p>Спасибо, что выбрали нас!</p>
                                     <form>
                                         <div class="dropdown">
-                                            <span>Марку*:</span>
+                                            <p>Марку*:</p>
                                             <select v-model="selectedMark">
                                                 <option value="">Укажите марку</option>
                                                 <option v-for="(val_obj,val) in this.Marks" :value="val">{{val}}</option>
                                             </select>
                                         </div>
                                         <div class="dropdown">
-                                            <span>Модель*:</span>
+                                            <p>Модель*:</p>
                                             <select :disabled="aMarks.length == 0" v-model="selectedModel">
                                                 <option value="">Укажите модель</option>
                                                 <option v-for="val in this.aMarks">{{val}}</option>
                                             </select>
                                         </div>
                                         <div class="dropdown">
-                                            Пробег*:
+                                            <p>Пробег*:</p>
                                             <select :disabled="aModel.length == 0" v-model="selectedMileage">
                                                 <option value="">Укажите пробег</option>
                                                 <option v-for="val in this.aModel">{{val}}</option>
                                             </select>
                                         </div>
                                         <input type="submit" value="Отправить" v-on:click.prevent ="onClick" :disabled="aModel.length == 0 || selectedMileage == ''" />
-                                    </form>
+                                    </form>-->
                                 </v-dialog-a>
                             </div>
                         </div>
@@ -225,26 +226,6 @@
                                 </v-dialog-a>
                             </div>
                         </div>
-                        <!--<a href="#myModal1" type="submit" data-toggle="modal">
-                            <div class="section-class-item">
-                                <div class="item-icon text-left">
-                                    <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="item-text text-left">
-                                    <h3>ОНЛАЙН РАСЧЕТ СТОИМОСТИ<br>ПЛАНОВОГО ТО</h3>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#myModal2" type="submit" data-toggle="modal">
-                            <div class="section-class-item">
-                                <div class="item-icon text-left">
-                                    <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="item-text text-left">
-                                    <h3>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ<br>КУЗОВНОГО РЕМОНТА</h3>
-                                </div>
-                            </div>
-                        </a>-->
                     </div>
                 </div>
                 <div class="col-md-2"></div>
@@ -264,26 +245,7 @@
                                 </v-dialog-a>
                             </div>
                         </div>
-                        <!--a href="#myModal3" type="submit" data-toggle="modal">
-                            <div class="section-class-item">
-                                <div class="item-icon text-left">
-                                    <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="item-text text-left">
-                                    <h3>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ<br>СЛЕСАРНОГО РЕМОНТА</h3>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#myModal4" type="submit" data-toggle="modal">
-                            <div class="section-class-item">
-                                <div class="item-icon text-left">
-                                    <span class="icon-wrap"><i class="fa fa-calculator" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="item-text text-left">
-                                    <h3>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ<br>ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h3>
-                                </div>
-                            </div>
-                        </a-->
+                        
                     </div>
                 </div>
             </div>
@@ -551,6 +513,14 @@
                 </div>
         </section>
         <footer>
+
+<script type="text/javascript">
+    
+    createNoty();
+
+</script>
+
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -638,31 +608,25 @@
                 <!--p class="button-black" id="show-modal"@click="open()">{{button_text}}</p-->
             </div>
         </template>
+
         <template id="callback-template">
             <div>
                 <h4>Записаться</h4>
                 <p>Спасибо, что выбрали нас!
                     <br/>
                     <form>
-                        Имя
-                        <input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" /> Телефон*:
-                        <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
-                        <!--spam v-show="$v.form.IPhone.required && !$v.form.IPhone.minLength" class="red">Укажите номер телефона!</br></spam-->
-                        Укажите вашу эл.почту
-                        <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" />
-                        <!--spam v-show="!$v.form.IMail.email" class="red">Корректно введите эл.почту!</br></spam-->
-                        <label><span class="red">*</span>– обязательные поля.
-                        </label>
-                        </br>
-                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a  href="./personaldata.html" class="link" target="_blank">персональных данных</a>
-                        <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
-                        <!-- || $v.form.IMail.$invalid == true || (!$v.form.IPhone.required || !$v.form.IPhone.minLength)"-->
+                        <input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" />
+                        <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone"></input>
+                        <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" />
+                        <label><span class="red">*</span>– обязательные поля.</label></br>
+                        <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> <label>Отправляя форму вы соглашаетесь </br> на обработку </label> <a href="./personaldata.html" class="link" target="_blank">персональных данных</a>
+                        <input type="submit" value="Заказать звонок" v-on:click.prevent = "onClick" :disabled="form.chekedBS == false"/>
                     </form>
             </div>
         </template>
         <!--template id = "calculation-to-template">
         <div>
-        
+
     </div>
     </template-->
         <template id="calculation-bodywork-template">
@@ -671,17 +635,15 @@
                 <p>Вам достаточно сфотографировать повреждения своего а/м и выслать фотографии нам!</p>
                 <!--action="/file-upload" method="post"-->
                 <form>
-                    Имя*
-                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Укажите вашу эл.почту
-                    <input type="text" id="InputName" name="name" placeholder="Эл.почта" v-model="form.IMail" /> Загрузить фото:
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> 
+                    <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" /> Загрузить фото:
                     <input ref="fileInputs" type="file" name="file" multiple />
-                    </br>Описание повреждений:
-                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений" v-model="form.IMessage"></textarea>
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений:" v-model="form.IMessage"></textarea>
                     <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
                     </br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''" />
+                    <input type="submit" value="Отправить" v-on:click.prevent = "onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == ''" />
                 </form>
             </div>
         </template>
@@ -690,14 +652,13 @@
                 <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА</h4>
                 <p>Спасибо, что выбрали нас!</p>
                 <form>
-                    Имя*
-                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> Виды запчастей*:
-                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> 
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Виды запчастей*: Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
                     <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
                     </br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == '' || form.IMessage == ''" />
+                    <input type="submit" value="Отправить" v-on:click.prevent = "onClick" :disabled="form.chekedBS == false || form.IName == '' || form.IPhone == '' || form.IMessage == ''" />
                 </form>
             </div>
         </template>
@@ -706,16 +667,44 @@
                 <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
                 <p>Спасибо, что выбрали нас!</p>
                 <form id="form4">
-                    <p>Имя*</p>
-                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> Телефон*:
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> VIN-код
-                    <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> Список запчастей*:
-                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
-                    <label><span class="red">*</span>– обязательные поля.
-                    </label>
-                    </br>
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> 
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+                    <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> 
+                    <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Список запчастей*: Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
+                    <label><span class="red">*</span>– обязательные поля. </label> </br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>
-                    <input type="submit" value="Отправить" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
+                    <input type="submit" value="Отправить" v-on:click.prevent = "onClick" :disabled="form.chekedBS == false" />
+                </form>
+            </div>
+        </template>
+        <template id="cascad-selector-template" >
+            <div>
+                <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
+                <p>Спасибо, что выбрали нас!</p>
+                <form>
+                    <div class="dropdown">
+                        <span>Марку*:</span>
+                        <select v-model="form.selectedMark">
+                        <option value="">Укажите марку</option>
+                        <option v-for="(val_obj,val) in this.Marks" :value="val">{{val}}</option>
+                        </select>
+                    </div>
+                    <div class="dropdown">
+                        <span>Модель*:</span>
+                        <select :disabled="form.aMarks.length == 0" v-model="form.selectedModel">
+                        <option value="">Укажите модель</option>
+                        <option v-for="val in form.aMarks">{{val}}</option>
+                        </select>
+                    </div>
+                    <div class="dropdown">
+                        Пробег*:
+                        <select :disabled="form.aModel.length == 0" v-model="form.selectedMileage">
+                        <option value="">Укажите пробег</option>
+                        <option v-for="val in form.aModel"  >{{val}}</option>
+                        </select>
+                    </div>
+                    <br>
+                    <input type="submit" value="Отправить" v-on:click.prevent ="onClick" :disabled="form.aModel.length == 0"/>
                 </form>
             </div>
         </template>
