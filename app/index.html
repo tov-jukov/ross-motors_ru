@@ -28,7 +28,7 @@
         background-color: #fff;
     }
     </style>
-    <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps"> 
+    <!-- <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps">
     </script> -->
 </head>
 
@@ -245,7 +245,7 @@
                                 </v-dialog-a>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -515,7 +515,7 @@
         <footer>
 
 <script type="text/javascript">
-    
+
     createNoty();
 
 </script>
@@ -636,7 +636,7 @@
                 <!--action="/file-upload" method="post"-->
                 <form>
                     <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> 
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                     <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" /> Загрузить фото:
                     <input ref="fileInputs" type="file" name="file" multiple />
                     <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений:" v-model="form.IMessage"></textarea>
@@ -653,7 +653,7 @@
                 <p>Спасибо, что выбрали нас!</p>
                 <form>
                     <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" /> 
+                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                     <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Виды запчастей*: Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
                     <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
                     </br>
@@ -667,9 +667,9 @@
                 <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ</h4>
                 <p>Спасибо, что выбрали нас!</p>
                 <form id="form4">
-                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" /> 
+                    <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
                     <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
-                    <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" /> 
+                    <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" />
                     <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Список запчастей*: Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
                     <label><span class="red">*</span>– обязательные поля. </label> </br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" /> Отправляя форму вы соглашаетесь </br> на обработку <a class="link" href="./personaldata.html" target="_blank">персональных данных</a>

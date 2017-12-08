@@ -39,9 +39,42 @@ init_form_data = {
 //const { required,email,minLength } = window.validators;
 //---?????????-------------------------------------
   // As a plugin
-  Vue.use(VueMask.VueMaskPlugin);
+Vue.use(VueMask.VueMaskPlugin);
   // As a directive
-  Vue.directive('mask', VueMask.VueMaskDirective);
+Vue.directive('mask', VueMask.VueMaskDirective);
+  // Validation
+
+
+// Функция уведомления
+// options - настройка уведомления поумолчанию
+// ссылка на Noty https://ned.im/noty/#/options и https://ned.im/noty/v2/themes.html
+options = {
+    timeout: 3000,
+    theme: 'relax',
+    layout: 'topRight'
+  };
+function NotyF(data, opts) {
+  new Noty(Object.assign(options, opts, data)).show();
+  };
+//
+/* Example
+https://github.com/monterail/vuelidate/issues/165
+Vue.use(window.vuelidate.default)
+const { required, minLength } = window.validators
+
+const validate = (data, validations) =>
+  new Vue({ data, validations }).$v
+
+// ... somewhere in your backend logic
+const validationTree = validate(
+  {someData: 'hello'},
+  {someData: { minLength: minLength(2) }}
+)
+
+console.log(JSON.stringify(validationTree, null, 2))
+*/
+//Vue.use(window.vuelidate.default);
+//const { required, minLength, sameAs } = window.validators;
 //----------------------------------------------------------
 
 //??????????? ??????????
@@ -66,6 +99,9 @@ init_form_data = {
       onConfirm: function() {
         this.close();
       }
+    },
+    created:function(){
+      this.$on('event',function(){this.close();});
     }
   })
 // ??? - ??????????? ??????????
@@ -90,6 +126,9 @@ Vue.component('v-dialog-menu-a', {
       onConfirm: function() {
         this.close();
       }
+    },
+    created:function(){
+      this.$on('event',function(){this.close();});
     }
   })
 
@@ -116,6 +155,9 @@ Vue.component('v-dialog-menu-a', {
       onConfirm: function() {
         this.close();
       }
+    },
+    created:function(){
+      this.$on('event',function(){this.close();});
     }
   })
 // ??? - ??????????? ??????????
@@ -126,10 +168,10 @@ Vue.component('v-dialog-menu-a', {
       return {
             Marks: {
                 "Hyundai": ["Solaris", "Accent"],
-                "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]                   
+                "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
             },
             mileages:[
-                    "15",   
+                    "15",
                      "30",
                      "45",
                      "60",
@@ -213,10 +255,10 @@ new Vue({el:"#form-calculation-to"});*/
             data:{
                 Marks: {
                     "Hyundai": ["Solaris", "Accent"],
-                    "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]                   
+                    "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
                 },
                 mileages:[
-                        "15",   
+                        "15",
                          "30",
                          "45",
                          "60",
@@ -239,7 +281,7 @@ new Vue({el:"#form-calculation-to"});*/
                 aMarks: [],
                 aModel: [],
                 form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
-                
+
             },
             methods:{
                 onClick:function(){
@@ -255,7 +297,7 @@ new Vue({el:"#form-calculation-to"});*/
                 axios.post('calculation-to.php',json_data)
                 .then(function(response){console.log('success');console.log(response);})
                 .catch(function(e){console.log(e)});
-                 this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+                 this.selectedMileage = this.selectedModel = this.selectedMark = "";
                 }
             },
             watch: {
@@ -296,30 +338,32 @@ new Vue({el:"#form-calculation-to"});*/
 //project_name - название проекта
 //admin_email - адрес приёма корреспонденции
 //form_subject - форма отправитель
+
+//const { required, minLength } = require('libs/vue/validators.js')
 Vue.component("callback", {
   template:"#callback-template",
   data:function(){
       return {
-        form:{
-          IName:"",
-          IPhone:"",
-          IMail:"",
-          form_subject: "Форма заказать звонок",
-          chekedBS: false
-          }
+          form:{
+            IName:"",
+            IPhone:"",
+            IMail:"",
+            form_subject: "Форма заказать звонок",
+            chekedBS: false
+          },
+          old_form:Object.assign({}, this.form)
         }
   },
     methods:{
       onClick:function(){
-        //createNoty();
-        //this.$emit('closepopup');
-        //this.$parent.$emit('changeview');
+        this.$parent.$emit('event');
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
         axios.post('mail.php',json_data)
-        .then(function(response){console.log('success');console.log(response);})
-        .catch(function(e){console.log(e)})
+        .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
+        .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+        this.form = Object.assign({}, this.old_form);
       }
   }
 
@@ -349,18 +393,20 @@ Vue.component("calculation-locksmith-repair", {
             IMessage: "",
             form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА"',
             chekedBS: false
-          }
+          },
+          old_form:Object.assign({}, this.form)
         }
   },
     methods:{
       onClick:function(){
-        //this.$emit("closepopup");
+        this.$parent.$emit('event');
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
         axios.post('mail.php',json_data)
-        .then(function(response){console.log('success');console.log(response);})
-        .catch(function(e){console.log(e)})
+        .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
+        .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+        this.form = Object.assign({}, this.old_form);
       }
   }
 
@@ -368,7 +414,7 @@ Vue.component("calculation-locksmith-repair", {
 new Vue({
             el: "#form-calculation-locksmith-repair",
         });
-        
+
         //---------------------------------------------------------
 // ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ - форма 4
 //calculation-zip-warehouse-template
@@ -383,25 +429,27 @@ Vue.component("calculation-zip-warehouse", {
             IMessage: "",
             form_subject: 'Форма "ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ"',
             chekedBS: false
-          }
+          },
+          old_form:Object.assign({}, this.form)
         }
   },
     methods:{
       onClick:function(){
-        
+        this.$parent.$emit('event');
         var json_data = JSON.parse(JSON.stringify(this.form));
         json_data.project_name=init_form_data.project_name;
         console.log(json_data);
         axios.post('mail.php',json_data)
-        .then(function(response){console.log('success');console.log(response);})
-        .catch(function(e){console.log(e)})
+        .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
+        .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+        this.form = Object.assign({}, this.old_form);
       }
   }
 
 });
   new Vue({
             el: "#form-calculation-zip-warehouse",
-            
+
         });
 
 // ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА
@@ -417,11 +465,13 @@ Vue.component("calculation-bodywork", {
                 FILES:{},
                 form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"',
                 chekedBS: false
-              }
+              },
+              old_form:Object.assign({}, this.form)
         }
   },
       methods:{
               onClick: function(e) {
+                this.$parent.$emit('event');
                 var files = this.$refs.fileInputs.files;
                 /*console.log(files);*/
                 var json_data = JSON.parse(JSON.stringify(this.form));
@@ -429,9 +479,10 @@ Vue.component("calculation-bodywork", {
                 json_data.FILES = files;
                 console.log(json_data);
                 axios.post('mail.php',json_data)
-                .then(function(response){console.log('success');console.log(response);})
-                .catch(function(e){console.log(e)})
-                
+                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
+                .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+                this.form = Object.assign({}, this.old_form);
+
                 }
             }
 });
@@ -472,7 +523,7 @@ new Vue({
                  });
                 }
         }
-            
+
         });
 */
 
@@ -484,6 +535,16 @@ Vue.component('cascad-selector', {
         template: '#cascad-selector-template',
         data: function() {
             return {
+
+                old_form:null,
+                form:{
+                    selectedMark: "",
+                    selectedModel: "",
+                    selectedMileage: "",
+                    aMarks: [],
+                    aModel: [],
+                    form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
+                },
                 Marks: {
                     "Hyundai": ["Solaris", "Accent"],
                     "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
@@ -506,39 +567,37 @@ Vue.component('cascad-selector', {
                          "225",
                          "240"
                     ],
-                form:{
-                    selectedMark: "",
-                    selectedModel: "",
-                    selectedMileage: "",
-                    aMarks: [],
-                    aModel: [],
-                    form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
-                }   
             }
+        },
+        created:function()
+        {
+          this.old_form = Object.assign({}, this.form);
         },
         methods:{
             onClick:function(){
                  var formData = {
-                "selectedMark":this.form.selectedMark,
+                "selectedMark":this.form.selectedMark1,
                 "selectedModel":this.form.selectedModel,
                 "selectedMileage":this.form.selectedMileage,
                 "form_subject":this.form.form_subject,
                 }
                 var json_data = JSON.parse(JSON.stringify(formData));
                 json_data.project_name=init_form_data.project_name;
-                console.log(json_data);
+                //console.log(json_data);
                 axios.post('calculation-to.php',json_data)
-                .then(function(response){console.log('success');console.log(response);})
-                .catch(function(e){console.log(e)});
-                 this.selectedMileage = this.selectedModel = this.selectedMark = ""; 
+                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
+                .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+
+                this.form = Object.assign({}, this.old_form);
+                this.$parent.$emit('event');
             }
         },
         computed: {
             selectedMark: function () {
-                return this.form.selectedMark
+                return this.form.selectedMark;
             },
             selectedModel: function () {
-                return this.form.selectedModel
+                return this.form.selectedModel;
             }
         },
         watch: {
