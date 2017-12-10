@@ -31,9 +31,10 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/vue/vue.js',
 		'app/libs/vue/vue-carousel-3d.js',
 		'app/libs/axios/dist/axios.js',
-//		'app/libs/vue/vue-axios/dist/vue-axios.min.js',
-		'app/libs/vue/vuelidate.min.js',
-		'app/libs/vue/validators.min.js',
+		'app/libs/vue/simplev.js',
+		//'app/libs/vue/vue-axios/dist/vue-axios.min.js',
+		//'app/libs/vue/vuelidate.min.js',
+		//'app/libs/vue/validators.min.js',
 		'app/libs/vue/v-mask.min.js',
 		'app/libs/noty/noty.js',
 		'app/js/common.min.js', // Всегда в конце
@@ -75,7 +76,7 @@ gulp.task('imagemin', function() {
 	return gulp.src('app/img/**/*')
 	// .pipe(cache(imagemin())) // Cache Images
 	.pipe(imagemin())
-	.pipe(gulp.dest('dist/img')); 
+	.pipe(gulp.dest('dist/img'));
 });
 
 gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
