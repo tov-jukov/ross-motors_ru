@@ -57,6 +57,8 @@ a
 	outline: none !important
 	color: #000
 	text-decoration: none
+	&:hover
+		text-decoration: none
 
 .main-head
 	// min-height: 100vh
@@ -81,13 +83,14 @@ nav
 	li
 		display: inline-block
 
+
 .main-mnu
 	text-transform: uppercase
 	text-align: center
 	font-size: em(16px)
 	> ul
 		> li
-			> a, a#show-modal
+			> a
 				display: block
 				padding: 18px 25px
 				color: #fff
@@ -97,6 +100,26 @@ nav
 					text-decoration: none
 			&:hover
 				background-color: #000
+				text-decoration: none
+			ul
+				position: absolute
+				background: #222
+				display: none
+				height: auto
+				width: 100px
+			&:hover ul
+				display: block
+			li
+				&:hover
+					font-weight: 800
+					display: block
+					float: none
+					width: 100px
+			ul a
+				text-align: left
+				display: block
+				height: 40px
+				padding: 0px 10px 0px 25px
 		&.active
 			background-color: #000
 			a
