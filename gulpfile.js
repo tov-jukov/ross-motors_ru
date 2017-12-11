@@ -31,9 +31,10 @@ gulp.task('js', ['common-js'], function() {
 		'app/libs/vue/vue.js',
 		'app/libs/vue/vue-carousel-3d.js',
 		'app/libs/axios/dist/axios.js',
+		'app/libs/vue/simplev.js',,
 //		'app/libs/vue/vue-axios/dist/vue-axios.min.js',
-		'app/libs/vue/vuelidate.min.js',
-		'app/libs/vue/validators.min.js',
+		//'app/libs/vue/vuelidate.min.js',
+		//'app/libs/vue/validators.min.js',
 		'app/libs/vue/v-mask.min.js',
 		'app/libs/noty/noty.js',
 		'app/js/common.min.js', // Всегда в конце
