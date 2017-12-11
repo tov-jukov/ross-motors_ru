@@ -53,6 +53,7 @@ options = {
     theme: 'relax',
     layout: 'topRight'
   };
+
 function NotyF(data, opts) {
   new Noty(Object.assign(options, opts, data)).show();
   };

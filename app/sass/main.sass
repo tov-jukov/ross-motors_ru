@@ -57,6 +57,8 @@ a
 	outline: none !important
 	color: #000
 	text-decoration: none
+	&:hover
+		text-decoration: none
 
 .main-head
 	// min-height: 100vh
@@ -72,12 +74,12 @@ a
 		width: 400px
 		height: 85px
 
-
 nav
 	ul
 		list-style-type: none
 		padding: 0
 		margin: 0
+		color: #FFF
 	li
 		display: inline-block
 
@@ -85,23 +87,47 @@ nav
 	text-transform: uppercase
 	text-align: center
 	font-size: em(16px)
-	> ul
-		> li
-			> a, a#show-modal
-				display: block
-				padding: 18px 25px
-				color: #fff
-				+mt(.5s)
-				&:hover
-					color: #e1e1e1
-					text-decoration: none
+	ul
+		height: 40px
+		list-style: none
+	li
+		float: left
+		padding: 0px
+		a
+			display: block
+			text-align: center
+			text-decoration: none
+			color: #FFF
+			line-height: 40px
+			padding: 0px 25px
 			&:hover
-				background-color: #000
-		&.active
-			background-color: #000
-			a
-				color: #e1e1e1
-					
+				text-decoration: none
+				background: #000
+				color: #FFFFFF
+		ul
+			position: absolute
+			background: $red
+			display: none
+			height: auto
+			width: 145px
+			z-index: 1
+		&:hover ul
+			display: block
+		li
+			text-align: left
+			&:hover
+				font-weight: 800
+				background: #000
+			img.emblem
+				width: 32px
+			display: inline-block
+			float: none
+			width: 145px
+		ul a
+			// text-align: center
+			display: inline-block
+			height: 40px
+			padding: 0px 10px 0px 25px
 
 .main-mnu-bg
 	background: #c7212c
@@ -263,7 +289,7 @@ section
 		font-size: 42px
 		position: relative
 		display: inline-block
-		
+
 		// background-color: #F00
 
 // 		// display: block
@@ -471,7 +497,7 @@ footer
 		list-style-type: none
 		line-height: 20px
 		text-transform: uppercase
-		> li 
+		> li
 			> a
 				display: block
 				// padding: 18px 25px
@@ -539,7 +565,7 @@ footer
 		border-radius: 4px
 		box-sizing: border-box
 		font-size: 14px
-	
+
 	textarea, select
 		width: 100%
 		padding: 2px 10px
@@ -566,10 +592,10 @@ footer
 			cursor: not-allowed
 		&:hover
 			background-color: #45a049
-	
+
 	a.link
 		color: #0275d8 !important
-	
+
 	.red
 		color: rgb(255, 0, 0)
 	.MFOverlay
@@ -613,9 +639,9 @@ footer
 		word-break: break-all
 		font-weight: 500
 		height: 20%
-	
+
 	//Крестик
-	
+
 	.close
 		position: absolute
 		right: 20px
