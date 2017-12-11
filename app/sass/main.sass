@@ -80,6 +80,7 @@ nav
 		list-style-type: none
 		padding: 0
 		margin: 0
+		color: #FFF
 	li
 		display: inline-block
 
@@ -89,30 +90,28 @@ nav
 	text-align: center
 	font-size: em(16px)
 	ul
-		background: #cfcfcf
 		height: 40px
 		list-style: none
 	li
 		float: left
 		padding: 0px
 		a
-			background: #cfcfcf
 			display: block
 			text-align: center
 			text-decoration: none
-			color: #333
+			color: #FFF
 			line-height: 40px
 			padding: 0px 25px
 			&:hover
 				text-decoration: none
-				background: #915fa6
+				background: #000
 				color: #FFFFFF
 		ul
 			position: absolute
-			background: #222
+			background: $red
 			display: none
 			height: auto
-			width: 210px
+			width: 145px
 			z-index: 1
 		&:hover ul
 			display: block
@@ -121,7 +120,7 @@ nav
 				font-weight: 800
 			display: block
 			float: none
-			width: 210px
+			width: 145px
 		ul a
 			text-align: left
 			display: block
