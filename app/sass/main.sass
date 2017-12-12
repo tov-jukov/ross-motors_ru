@@ -554,6 +554,10 @@ footer
 
 //sdsds
 
+.MainDialog
+	&:focus
+		outline-style: none
+
 .forms-wrap, .Dialog
 	input[type=text], select
 		width: 100%
@@ -591,9 +595,21 @@ footer
 			cursor: not-allowed
 		&:hover
 			background-color: #45a049
-
+	form
+		font-size: 14px
+		text-transform: none
+		a.link
+			display: inline
+			padding: 0
+			color: $blue
+			background: #FFF
+			&:hover
+				background: #FFF
+				text-decoration: underline
+		label
+			font-size: 14px
 	a.link
-		color: #0275d8 !important
+		color: #0275d8
 
 	.red
 		color: rgb(255, 0, 0)

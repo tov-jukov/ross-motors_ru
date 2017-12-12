@@ -195,32 +195,6 @@
                                 <!-- id="form-calculation-to" -->
                                 <v-dialog-a name_form="ОНЛАЙН РАСЧЕТ <br/> СТОИМОСТИ ПЛАНОВОГО ТО">
                                     <cascad-selector></cascad-selector>
-                                    <!--   <h4>ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО</h4>
-                                    <p>Спасибо, что выбрали нас!</p>
-                                    <form>
-                                        <div class="dropdown">
-                                            <p>Марку*:</p>
-                                            <select v-model="selectedMark">
-                                                <option value="">Укажите марку</option>
-                                                <option v-for="(val_obj,val) in this.Marks" :value="val">{{val}}</option>
-                                            </select>
-                                        </div>
-                                        <div class="dropdown">
-                                            <p>Модель*:</p>
-                                            <select :disabled="aMarks.length == 0" v-model="selectedModel">
-                                                <option value="">Укажите модель</option>
-                                                <option v-for="val in this.aMarks">{{val}}</option>
-                                            </select>
-                                        </div>
-                                        <div class="dropdown">
-                                            <p>Пробег*:</p>
-                                            <select :disabled="aModel.length == 0" v-model="selectedMileage">
-                                                <option value="">Укажите пробег</option>
-                                                <option v-for="val in this.aModel">{{val}}</option>
-                                            </select>
-                                        </div>
-                                        <input type="submit" value="Отправить" v-on:click.prevent ="onClick" :disabled="aModel.length == 0 || selectedMileage == ''" />
-                                    </form>-->
                                 </v-dialog-a>
                             </div>
                         </div>
@@ -561,9 +535,9 @@
         </div>
     </footer>
     <template id="dialog-template">
-        <div class="MainDialog ">
-            <div class="Dialog" v-show="active">
-                <div class="MFOverlay"></div>
+        <div class="MainDialog" v-on:keyup.esc="close" tabindex="-1">
+            <div class="Dialog" v-show="active" >
+                <div class="MFOverlay" v-on:click="close"></div>
                 <div class="MFContent" v-show="active">
                     <p class="close" @click="close()"></p>
                     <slot></slot>
@@ -572,23 +546,22 @@
             <p v-bind:class="button_style" id="show-modal" @click="open()">{{button_text}}</p>
         </div>
     </template>
-    <template id="dialog-template-menu-a">
-        <div class="MainDialog ">
+    <template id="dialog-template-menu-a" tabindex="-1">
+        <div class="MainDialog" v-on:keyup.esc="close" >
             <div class="Dialog" v-show="active">
-                <div class="MFOverlay"></div>
+                <div class="MFOverlay"  v-on:click="close"></div>
                 <div class="MFContent" v-show="active">
-                    <p class="close" @click="close()"></p>
+                    <p class="close"  @click="close()"></p>
                     <slot></slot>
                 </div>
             </div>
             <a href="#" id="show-modal" @click="open()">{{name_form}}</a>
-            <!--p v-bind:class="button_style" id="show-modal" @click="open()">{{button_text}}</p-->
         </div>
     </template>
     <template id="dialog-template-a">
-        <div class="MainDialog ">
+        <div class="MainDialog" v-on:keyup.esc="close" tabindex="-1">
             <div class="Dialog" v-show="active">
-                <div class="MFOverlay"></div>
+                <div class="MFOverlay"  v-on:click="close"></div>
                 <div class="MFContent" v-show="active">
                     <p class="close" @click="close()"></p>
                     <slot></slot>
@@ -604,7 +577,6 @@
                     </div>
                 </div>
             </a>
-            <!--p class="button-black" id="show-modal"@click="open()">{{button_text}}</p-->
         </div>
     </template>
     <template id="callback-template">
@@ -617,10 +589,9 @@
                     <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone"></input>
                     <span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                     <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" />
-                    <label><span class="red">*</span>– обязательные поля.</label>
-                    </br>
+                    <label><span class="red">*</span>– обязательные поля.</label></br>
                     <input type="checkbox" id="checkboxSuccess" v-model="form.chekedBS" />
-                    <label>Отправляя форму вы соглашаетесь </br> на обработку </label> <a href="./personaldata.html" class="link" target="_blank">персональных данных</a>
+                    <label>Отправляя форму вы соглашаетесь </br> на обработку <a href="./personaldata.html" class="link" target="_blank">персональных данных</a></label>
                     <input type="submit" value="Заказать звонок" v-on:click.prevent="onClick" :disabled="form.chekedBS == false" />
                 </form>
         </div>

@@ -94,7 +94,7 @@ console.log(JSON.stringify(validationTree, null, 2))
         this.active = true
       },
       close: function() {
-        this.active = false
+        this.active = false;
       },
       onCancel: function() {
         this.close();
@@ -121,7 +121,7 @@ Vue.component('v-dialog-menu-a', {
         this.active = true
       },
       close: function() {
-        this.active = false
+        this.active = false;
       },
       onCancel: function() {
         this.close();
@@ -163,180 +163,6 @@ Vue.component('v-dialog-menu-a', {
       this.$on('event',function(){this.close();});
     }
   })
-// ??? - ??????????? ??????????
-// ?-?? ??? ?????????? ? - ???1
-/*Vue.component("calculation-to", {
-  template:"#calculation-to-template",
-  data:function(){
-      return {
-            Marks: {
-                "Hyundai": ["Solaris", "Accent"],
-                "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
-            },
-            mileages:[
-                    "15",
-                     "30",
-                     "45",
-                     "60",
-                     "75",
-                     "90",
-                     "105",
-                     "120",
-                     "135",
-                     "150",
-                     "165",
-                     "180",
-                     "195",
-                     "210",
-                     "225",
-                     "240"
-                ],
-            selectedMark: "",
-            selectedModel: "",
-            selectedMileage: "",
-            aMarks: [],
-            aModel: [],
-            form_subject: "Форма 'Он-лайн расчет стоимости планового ТО'",
-            project_name: init_form_data.project_name
-        }
-  },
-    methods:{
-      onClick:function(){
-        var formData = new FormData();
-        formData.append('selectedMark', this.selectedMark);
-        formData.append('selectedModel', this.selectedModel);
-        formData.append('selectedMileage', this.selectedMileage);
-        formData.append('form_subject', this.form_subject);
-        formData.append('project_name', this.project_name);
-        conslole.log(formData);
-        var json_data = JSON.parse(JSON.stringify(formData));
-        //json_data.project_name=init_form_data.project_name;
-        console.log(json_data);
-        axios.post('http://тов-жюков.рф/work/ross-motors/mail.php',json_data)
-        .then(function(response){console.log('success');console.log(response);})
-        .catch(function(e){console.log(e)});
-         this.selectedMileage = this.selectedModel = this.selectedMark = "";
-      },
-    watch: {
-        selectedMark: function() {
-            // Clear previously selected values
-            this.aMarks = [];
-            this.aModel = [];
-            this.selectedModel = "";
-            this.selectedMileage = "";
-            // Populate list of marks in the second dropdown
-            if (this.selectedMark.length > 0) {
-                this.aMarks = this.Marks[this.selectedMark];
-            }
-            else{
-                this.aMarks = [];
-                this.aModel = [];
-                this.selectedModel = "";
-                this.selectedMileage = "";
-            }
-        },
-        selectedModel: function() {
-            // Clear previously selected values
-            this.aModel = [];
-            this.selectedMileage = "";
-            // Now we have a continent and country. Populate list of model in the third dropdown
-            if (this.selectedModel.length > 0) {
-                this.aModel = this.mileages;
-            }
-            else{
-                this.aModel = [];
-                this.selectedMileage = "";
-            }
-        }
-    }
-  }
-
-});
-new Vue({el:"#form-calculation-to"});*/
-/*new Vue({
-            el: "#form-calculation-to",
-            data:{
-                Marks: {
-                    "Hyundai": ["Solaris", "Accent"],
-                    "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
-                },
-                mileages:[
-                        "15",
-                         "30",
-                         "45",
-                         "60",
-                         "75",
-                         "90",
-                         "105",
-                         "120",
-                         "135",
-                         "150",
-                         "165",
-                         "180",
-                         "195",
-                         "210",
-                         "225",
-                         "240"
-                    ],
-                selectedMark: "",
-                selectedModel: "",
-                selectedMileage: "",
-                aMarks: [],
-                aModel: [],
-                form_subject:'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ ПЛАНОВОГО ТО"'
-
-            },
-            methods:{
-                onClick:function(){
-                var formData = {
-                "selectedMark":this.selectedMark,
-                "selectedModel":this.selectedModel,
-                "selectedMileage":this.selectedMileage,
-                "form_subject":this.form_subject,
-                }
-                var json_data = JSON.parse(JSON.stringify(formData));
-                json_data.project_name=init_form_data.project_name;
-                console.log(json_data);
-                axios.post('calculation-to.php',json_data)
-                .then(function(response){console.log('success');console.log(response);})
-                .catch(function(e){console.log(e)});
-                 this.selectedMileage = this.selectedModel = this.selectedMark = "";
-                }
-            },
-            watch: {
-                selectedMark: function() {
-                    // Clear previously selected values
-                    this.aMarks = [];
-                    this.aModel = [];
-                    this.selectedModel = "";
-                    this.selectedMileage = "";
-                    // Populate list of marks in the second dropdown
-                    if (this.selectedMark.length > 0) {
-                        this.aMarks = this.Marks[this.selectedMark];
-                    }
-                    else{
-                        this.aMarks = [];
-                        this.aModel = [];
-                        this.selectedModel = "";
-                        this.selectedMileage = "";
-                    }
-                },
-                selectedModel: function() {
-                    // Clear previously selected values
-                    this.aModel = [];
-                    this.selectedMileage = "";
-                    // Now we have a continent and country. Populate list of model in the third dropdown
-                    if (this.selectedModel.length > 0) {
-                        this.aModel = this.mileages;
-                    }
-                    else{
-                        this.aModel = [];
-                        this.selectedMileage = "";
-                    }
-                }
-            }
-        });*/
-
 //Форма обратного звонка callback
 //project_name - название проекта
 //admin_email - адрес приёма корреспонденции
@@ -368,7 +194,7 @@ Vue.component("callback", {
             parent.$parent.$emit('event');
             var json_data = JSON.parse(JSON.stringify(parent.form));
             json_data.project_name=init_form_data.project_name;
-            console.log(json_data);
+            //console.log(json_data);
             axios.post('mail.php',json_data)
             .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
             .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
@@ -582,47 +408,6 @@ Vue.component("calculation-bodywork", {
           }
 });
 new Vue({el:"#form-calculation-bodywork"});
-/*
-new Vue({
-            el: "#app-calculation-bodywork",
-        data:{
-            form:{
-                IName:"",
-                IPhone:"",
-                IMail:"",
-                IMessage:"",
-                chekedBS: false
-            }
-        },
-        methods:{
-              submitForm: function(e) {
-                e.preventDefault();
-
-                var formData = new FormData();
-                var files = this.$refs.fileInputs.files;
-                console.log(this.$refs);
-                console.log(files);
-                formData.append('IName', this.form.IName);
-                formData.append('IPhone', this.form.IPhone);
-                formData.append('IMail', this.form.IMail);
-                formData.append('IMessage', this.form.IMessage);
-                formData.append('chekedBS', this.form.chekedBS);
-                for(var key in files){
-                    console.log(key);
-                    formData.append('more_image_['+key+']', files[key]);
-                }
-                 this.$http.post('/my/post/url', formData, function (data, status, request) {
-                     console.log('success');
-                 }).error(function (data, status, request) {
-                     console.log('error');
-                 });
-                }
-        }
-
-        });
-*/
-
-
 
 // cascad-selector-app
 
