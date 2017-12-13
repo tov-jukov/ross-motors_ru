@@ -28,8 +28,8 @@
         background-color: #fff;
     }
     </style>
-    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps">
-    </script>
+   <!--  <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A1c0a183e56a02e4ab25596c0b83981cb53f51409a768e822808f004007538ce0&amp;width=100%25&amp;height=420&amp;lang=ru_RU&amp;scroll=false&amp;id=ya-maps">
+    </script> -->
 </head>
 
 <body>
@@ -173,10 +173,11 @@
                         </div>
                     </div>
                     <!-- end кнопка и машинка-->
-                    <div class="row clearfix">
+                    <div class="row">
                         <div class="col-md-6 hidden-sm hidden-xs">
                             <div class="garant">С сохранением гарантии у дилера
-                                <br>Бесплатная программа "Помощь на дорогах"</div>
+                                <br>Бесплатная программа "Помощь на дорогах"
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -678,7 +679,7 @@
                     </select>
                 </div>
                 <div class="dropdown">
-                    Пробег*:
+                    <span>Пробег*:</span>
                     <select :disabled="form.aModel.length == 0" v-model="form.selectedMileage">
                         <option value="">Укажите пробег</option>
                         <option v-for="val in form.aModel">{{val}}</option>
