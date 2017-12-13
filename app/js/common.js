@@ -369,6 +369,7 @@ Vue.component("calculation-bodywork", {
       methods:{
               onClick: function(e) {
                 parent = this;
+                console.log(this);
                 this.$validate()
                 .then(function(success){
                 if(success == true){
@@ -377,6 +378,7 @@ Vue.component("calculation-bodywork", {
                 var json_data = JSON.parse(JSON.stringify(parent.form));
                 json_data.project_name=init_form_data.project_name;
                 json_data.FILES = files;
+                console.log(files);
                 axios.post('mail.php',json_data)
                 .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
                 .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
@@ -401,9 +403,6 @@ Vue.component("calculation-bodywork", {
             },
             'form.IPhone':function(value){
               return Validator.value(value).required().regex('[0-9]+');
-            },
-            'form.IMail':function(value){
-              return Validator.value(value).email();
             }
           }
 });
