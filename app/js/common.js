@@ -379,7 +379,7 @@ Vue.component("calculation-bodywork", {
                 json_data.project_name=init_form_data.project_name;
                 json_data.FILES = files;
                 console.log(files);
-                axios.post('mail.php',json_data)
+                axios.post('mail_file.php',json_data)
                 .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
                 .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
                 parent.reset();//this.form = Object.assign({}, this.old_form);
