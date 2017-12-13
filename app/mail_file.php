@@ -10,7 +10,7 @@ function adopt($text) {
 }
 
 $method = $_SERVER['REQUEST_METHOD'];
-$_POST = json_decode(file_get_contents('php://input'),true);
+
 $email = "tov-jukof@ya.ru";
 
 $c = true;
@@ -51,9 +51,17 @@ $multipart .= $EOL; // раздел между заголовками и тел�
 $multipart .= chunk_split(base64_encode($message));
 
 #начало вставки файлов
+$_FILESarr = $_FILES["file"];
+$_POSTarr = (array)$_POST;
+echo $_FILESarr;
+$js_objFILES = json_encode($_FILESarr);
+$js_objPOST = json_encode($_POSTarr);
+print "<script language='javascript'> var obrt = $_FILESarr2; var obj2=$js_objPOST;console.log(obj2); var obj=$js_objFILES;console.log(js_objFILES); alert(obj);</script>";
 
-foreach($_FILES["file"]["name"] as $key => $value){
-    $filename = $_FILES["file"]["tmp_name"][$key];
+//["file"]["name"] 
+foreach($_POST['file'] as $value){
+    echo  $value;
+    /*$filename = $_FILES["file"]["tmp_name"][$key];
     $file = fopen($filename, "rb");
     $data = fread($file,  filesize( $filename ) );
     fclose($file);
@@ -64,10 +72,13 @@ foreach($_FILES["file"]["name"] as $key => $value){
     $multipart .= "Content-Transfer-Encoding: base64" . $EOL . "";
     $multipart .= "Content-Disposition: attachment; filename=\"" . $NameFile . "\"" . $EOL . "";
     $multipart .= $EOL; // раздел между заголовками и телом прикрепленного файла
-    $multipart .= chunk_split(base64_encode($File));
+    $multipart .= chunk_split(base64_encode($File));*/
 
 }
-
+$array = (array)$_POST['file'];
+for ($ct = 0; $ct < count($_POST['file']); $ct++) {
+        echo  $ct;
+    }
 #>>конец вставки файлов
 
 $multipart .= "" . $EOL . "--" . $boundary . "--" . $EOL . "";

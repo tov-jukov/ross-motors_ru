@@ -375,11 +375,26 @@ Vue.component("calculation-bodywork", {
                 if(success == true){
                 parent.$parent.$emit('event');
                 var files = parent.$refs.fileInputs.files;
-                var json_data = JSON.parse(JSON.stringify(parent.form));
+
+                data = new FormData();
+                data.append('file', files);
+                data.append('IName', parent.form.IName);
+                data.append('IMail', parent.form.IMail);
+                data.append('IMessage',parent.form.IMessage);
+                data.append('IPhone',parent.form.IPhone);
+                data.append('form_subject',parent.form.form_subject);
+                data.append('chekedBS',parent.form.chekedBS);
+                
+                /*var json_data = JSON.parse(JSON.stringify(parent.form));
                 json_data.project_name=init_form_data.project_name;
-                json_data.FILES = files;
+                json_data.file = files;json_data*/
                 console.log(files);
-                axios.post('mail_file.php',json_data)
+                config = {
+                  headers: {
+                    'content-type': 'multipart/form-data'
+                  }
+                };
+                axios.post('mail_file.php', data, config)
                 .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
                 .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
                 parent.reset();//this.form = Object.assign({}, this.old_form);
