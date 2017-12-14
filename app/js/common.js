@@ -377,14 +377,24 @@ Vue.component("calculation-bodywork", {
                 var files = parent.$refs.fileInputs.files;
 
                 data = new FormData();
-                data.append('file', files);
                 data.append('IName', parent.form.IName);
                 data.append('IMail', parent.form.IMail);
                 data.append('IMessage',parent.form.IMessage);
                 data.append('IPhone',parent.form.IPhone);
                 data.append('form_subject',parent.form.form_subject);
                 data.append('chekedBS',parent.form.chekedBS);
-                
+                console.log(files.length);
+                 if (files.length > 0) {
+                    for (var i = 0; i < files.length; i++) {
+                        var file = files[i];
+                        console.log(file);
+                        data.append('file[]', file);
+                    }
+                }
+                console.log(data);
+                data.forEach(function(item, i, data) {
+                  console.log( i + ": " + item.name + " (массив:" + data + ")" );
+                });
                 /*var json_data = JSON.parse(JSON.stringify(parent.form));
                 json_data.project_name=init_form_data.project_name;
                 json_data.file = files;json_data*/
@@ -398,6 +408,8 @@ Vue.component("calculation-bodywork", {
                 .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
                 .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
                 parent.reset();//this.form = Object.assign({}, this.old_form);
+                console.log( parent.$refs.fileInputs.files);
+                parent.$refs.fileInputs.files = {};
               }
             });
           },
