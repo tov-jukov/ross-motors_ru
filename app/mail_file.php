@@ -1,5 +1,5 @@
 <?php
-
+require 'php/PHPMailer.php';
 $method = $_SERVER['REQUEST_METHOD'];
 $email = "tov-jukof@ya.ru";
 $c = true;
