@@ -6,19 +6,19 @@ new Vue({
   data: {
     slides: [
     {
-      url: 'assets/img/licence/license-01.jpg'
+      url: '/img/licence/license-01.jpg'
     },
 
     {
-      url: 'assets/img/licence/license-02.jpg'
+      url: '/img/licence/license-02.jpg'
     },
 
     {
-      url: 'assets/img/licence/license-03.jpg'
+      url: '/img/licence/license-03.jpg'
     },
 
     {
-      url: 'assets/img/licence/license-04.jpg'
+      url: '/img/licence/license-04.jpg'
     }
     ]
   },
