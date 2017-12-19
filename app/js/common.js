@@ -360,22 +360,30 @@ Vue.component("calculation-bodywork", {
                 IPhone:"",
                 IMail:"",
                 IMessage:"",
-                FILES:{},
                 form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"',
                 chekedBS: false
-              }
+              },
+              percentCompleted: 0,
+              block: true
         }
   },
+  watch:{
+      percentCompleted:function(){
+        if(this.percentCompleted == 100){
+          this.percentCompleted = 0;
+          this.$parent.$emit('event'); 
+          this.reset();       
+          }
+      }
+    },
       methods:{
               onClick: function(e) {
+                this.block = false;
                 parent = this;
-                console.log(this);
                 this.$validate()
                 .then(function(success){
                 if(success == true){
-                parent.$parent.$emit('event');
                 var files = parent.$refs.fileInputs.files;
-
                 data = new FormData();
                 data.append('IName', parent.form.IName);
                 data.append('IMail', parent.form.IMail);
@@ -383,33 +391,35 @@ Vue.component("calculation-bodywork", {
                 data.append('IPhone',parent.form.IPhone);
                 data.append('form_subject',parent.form.form_subject);
                 data.append('chekedBS',parent.form.chekedBS);
-                console.log(files.length);
-                 if (files.length > 0) {
+                if (files.length > 0) {
                     for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        console.log(file);
-                        data.append('file[]', file);
+                        data.append('file[]', files[i]);
                     }
                 }
-                console.log(data);
-                data.forEach(function(item, i, data) {
+                /*data.forEach(function(item, i, data) {
                   console.log( i + ": " + item.name + " (массив:" + data + ")" );
-                });
+                });*/
                 /*var json_data = JSON.parse(JSON.stringify(parent.form));
                 json_data.project_name=init_form_data.project_name;
                 json_data.file = files;json_data*/
-                console.log(files);
+                /*console.log(files);
                 config = {
                   headers: {
                     'content-type': 'multipart/form-data'
                   }
+                };*/
+                var config = {
+                  headers: { 'Content-Type': 'multipart/form-data' } ,
+                  onUploadProgress: function(progressEvent) {
+                    parent.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                    parent.$forceUpdate();
+                  }.bind(parent)
                 };
                 axios.post('mail_file.php', data, config)
                 .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-                .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
-                parent.reset();//this.form = Object.assign({}, this.old_form);
-                console.log( parent.$refs.fileInputs.files);
-                parent.$refs.fileInputs.files = {};
+                .catch(function(e){console.log(e); parent.block = true; parent.percentCompleted = 0; NotyF({type:'error',text:"Ошибка."});});
+                //parent.reset();
+                //parent.$parent.$emit('event');
               }
             });
           },
@@ -418,9 +428,14 @@ Vue.component("calculation-bodywork", {
             this.form.IPhone = "";
             this.form.IMail = "";
             this.form.IMessage = "";
-            this.form.FILES = {};
             this.form.form_subject =  'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"';
             this.form.chekedBS =  false;
+            this.percentCompleted = 0;
+            this.block = true;
+            this.getElementById("attachments").value = [];
+            console.log(this.getElementById("attachments").value);
+            document.getElementById("attachments").value = [];
+            console.log(document.getElementById("attachments").value);
             this.validation.reset();
           }
         },
@@ -429,7 +444,7 @@ Vue.component("calculation-bodywork", {
             return Validator.value(value).required();
             },
             'form.IPhone':function(value){
-              return Validator.value(value).required().regex('[0-9]+');
+              return Validator.value(value).required().regex('[\+\(\)\-0-9]+', '');
             }
           }
 });

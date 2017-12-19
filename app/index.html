@@ -595,7 +595,7 @@
                 <br/>
                 <form>
                     <input type="text" id="InputName" name="name" placeholder="Ваше Имя:" v-model="form.IName" />
-                    <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone"></input>
+                    <input type="text" v-mask="'+#(###)##-##-###'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone"></input>
                     <span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                     <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" />
                     <label><span class="red">*</span>– обязательные поля.</label>
@@ -619,10 +619,11 @@
             <form>
                 <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
                 </br><span class="red" v-show="validation.hasError('form.IName')">Введите Ваше имя</span>
-                <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+                <input type="text" v-mask="'+#(###)##-##-###'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                 </br><span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                 <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" /> Загрузить фото:
                 <input ref="fileInputs" type="file" name="file" multiple />
+                <span>{{percentCompleted}}</span>
                 <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений:" v-model="form.IMessage"></textarea>
                 <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
                 </br>
@@ -638,7 +639,7 @@
             <form>
                 <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
                 </br><span class="red" v-show="validation.hasError('form.IName')">Введите Ваше имя</span>
-                <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+                <input type="text" v-mask="'+#(###)##-##-###'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                 </br><span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                 <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Виды запчастей*: Заполните это поле. Пример: Сколько стоит ремонт рулевой рейки?" v-model="form.IMessage"></textarea>
                 </br><span class="red" v-show="validation.hasError('form.IMessage')">Заполните поле 'Виды запчастей'</br></span>
@@ -656,7 +657,7 @@
             <form id="form4">
                 <input type="text" id="InputName" name="name" placeholder="Ваше Имя*:" v-model="form.IName" />
                 </br><span class="red" v-show="validation.hasError('form.IName')">Введите Ваше имя</span>
-                <input type="text" v-mask="'+N(NNN)NN-NN-NNN'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
+                <input type="text" v-mask="'+#(###)##-##-###'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                 </br><span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                 <input v-mask="'XXXXXXXXXXXXXXXXX'" type="text" id="InputVINcode" name="vincode" placeholder="VIN-код:" v-model="form.IVINcode" />
                 <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Список запчастей*: Заполните это поле. Пример: Сколько стоят запчасти?" v-model="form.IMessage"></textarea>
