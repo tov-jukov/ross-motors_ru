@@ -194,8 +194,8 @@ Vue.component("callback", {
             json_data.project_name=init_form_data.project_name;
             //console.log(json_data);
             axios.post('mail.php',json_data)
-            .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-            .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+            .then(function(response){NotyF({type:'success',text:"Запрос отправлен."});})
+            .catch(function(e){NotyF({type:'error',text:"Ошибка."});});
             parent.reset();
             }
         });
@@ -253,10 +253,9 @@ Vue.component("calculation-locksmith-repair", {
             parent.$parent.$emit('event');
             var json_data = JSON.parse(JSON.stringify(parent.form));
             json_data.project_name=init_form_data.project_name;
-            console.log(json_data);
             axios.post('mail.php',json_data)
-            .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-            .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+            .then(function(response){NotyF({type:'success',text:"Запрос отправлен."});})
+            .catch(function(e){NotyF({type:'error',text:"Ошибка."});});
             parent.reset();
             }
         });
@@ -314,8 +313,8 @@ Vue.component("calculation-zip-warehouse", {
               var json_data = JSON.parse(JSON.stringify(parent.form));
               json_data.project_name=init_form_data.project_name;
               axios.post('mail.php',json_data)
-              .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-              .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+              .then(function(response){NotyF({type:'success',text:"Запрос отправлен."});})
+              .catch(function(e){NotyF({type:'error',text:"Ошибка."});});
               parent.reset();
           }
         });
@@ -407,13 +406,13 @@ Vue.component("calculation-bodywork", {
 	                  }
 	                };
 	                axios.post('mail.php', data, config)
-	                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});
+	                .then(function(response){NotyF({type:'success',text:"Запрос отправлен."});
 	                	parent.$parent.$emit('unblock-window');
 						parent.$parent.$emit('event'); 
 						parent.reset();
 
 					})
-	                .catch(function(e){console.log(e); parent.percentCompleted = 0; parent.$parent.$emit('unblock-window'); NotyF({type:'error',text:"Ошибка."});});
+	                .catch(function(e){ parent.percentCompleted = 0; parent.$parent.$emit('unblock-window'); NotyF({type:'error',text:"Ошибка."});});
                 //parent.reset();
                 //parent.$parent.$emit('event');
               }
@@ -497,8 +496,8 @@ Vue.component('cascad-selector', {
                 json_data.project_name=init_form_data.project_name;
                 //console.log(json_data);
                 axios.post('calculation-to.php',json_data)
-                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-                .catch(function(e){console.log(e);NotyF({type:'error',text:"Ошибка."});});
+                .then(function(response){NotyF({type:'success',text:"Запрос отправлен."});})
+                .catch(function(e){NotyF({type:'error',text:"Ошибка."});});
 
                 this.form = Object.assign({}, this.old_form);
                 this.$parent.$emit('event');
