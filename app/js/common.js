@@ -29,7 +29,7 @@ components: {
 });
 //end слайдер
 
-//---????????----------------------------------------
+//-------------------------------------------
 init_form_data = {
     project_name: 'Росс-Моторс',
     admin_email: ''
@@ -37,7 +37,7 @@ init_form_data = {
 
 //import { validationMixin } from 'vuelidate'
 //const { required,email,minLength } = window.validators;
-//---?????????-------------------------------------
+//----------------------------------------
   // As a plugin
 Vue.use(VueMask.VueMaskPlugin);
   // As a directive
@@ -137,6 +137,7 @@ Vue.component('v-dialog-a', {
     data: function() {
       return {
         active: false,
+        active_block: false
       }
     },
     props: ['name_form'],
@@ -155,7 +156,9 @@ Vue.component('v-dialog-a', {
       }
     },
     created:function(){
-      this.$on('event',function(){this.close();});
+      this.$on('event',function(){this.close();});  
+      this.$on('block-window',function(){this.active_block = true; NotyF({timeout:8000, type:'info ',text:"Пожалуйста не закрывайте вкладку,\n файлы готовятся к отправке."});});
+      this.$on('unblock-window',function(){this.active_block = false;});
     }
   })
 //Форма обратного звонка callback
@@ -358,11 +361,10 @@ Vue.component("calculation-bodywork", {
                 form_subject: 'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"',
                 chekedBS: false
               },
-              percentCompleted: 0,
-              block: true
+              percentCompleted: 0
         }
   },
-  watch:{
+  /*watch:{
       percentCompleted:function(){
         if(this.percentCompleted == 100){
           this.percentCompleted = 0;
@@ -370,49 +372,48 @@ Vue.component("calculation-bodywork", {
           this.reset();       
           }
       }
-    },
+    },*/
       methods:{
-              onClick: function(e) {
-                this.block = false;
+
+			UpdatePercentCompleted:function(percent){
+				
+			},
+ 			  onClick: function(e) {
                 parent = this;
+                parent.$parent.$emit('block-window'); 
                 this.$validate()
                 .then(function(success){
                 if(success == true){
-                var files = parent.$refs.fileInputs.files;
-                data = new FormData();
-                data.append('IName', parent.form.IName);
-                data.append('IMail', parent.form.IMail);
-                data.append('IMessage',parent.form.IMessage);
-                data.append('IPhone',parent.form.IPhone);
-                data.append('form_subject',parent.form.form_subject);
-                data.append('chekedBS',parent.form.chekedBS);
-                if (files.length > 0) {
-                    for (var i = 0; i < files.length; i++) {
-                        data.append('file[]', files[i]);
-                    }
-                }
-                /*data.forEach(function(item, i, data) {
-                  console.log( i + ": " + item.name + " (массив:" + data + ")" );
-                });*/
-                /*var json_data = JSON.parse(JSON.stringify(parent.form));
-                json_data.project_name=init_form_data.project_name;
-                json_data.file = files;json_data*/
-                /*console.log(files);
-                config = {
-                  headers: {
-                    'content-type': 'multipart/form-data'
-                  }
-                };*/
-                var config = {
-                  headers: { 'Content-Type': 'multipart/form-data' } ,
-                  onUploadProgress: function(progressEvent) {
-                    parent.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                    parent.$forceUpdate();
-                  }.bind(parent)
-                };
-                axios.post('mail_file.php', data, config)
-                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});})
-                .catch(function(e){console.log(e); parent.block = true; parent.percentCompleted = 0; NotyF({type:'error',text:"Ошибка."});});
+	                var files = parent.$refs.fileInputs.files;
+	                data = new FormData();
+	                data.append('IName', parent.form.IName);
+	                data.append('IMail', parent.form.IMail);
+	                data.append('IMessage',parent.form.IMessage);
+	                data.append('IPhone',parent.form.IPhone);
+	                data.append('form_subject',parent.form.form_subject);
+	                data.append('chekedBS',parent.form.chekedBS);
+	                parent.form.chekedBS = false;
+	                if (files.length > 0) {
+	                    for (var i = 0; i < files.length; i++) {
+	                        data.append('file[]', files[i]);
+	                    }
+	                }
+	                var config = {
+	                  headers: { 'Content-Type': 'multipart/form-data' } ,
+	                  onUploadProgress: function(progressEvent) {
+	                  	parent.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+	                    //parent.UpdatePercentCompleted(parent.percentCompleted);
+	                    //parent.$forceUpdate();
+	                  }
+	                };
+	                axios.post('mail.php', data, config)
+	                .then(function(response){console.log('success');console.log(response);NotyF({type:'success',text:"Запрос отправлен."});
+	                	parent.$parent.$emit('unblock-window');
+						parent.$parent.$emit('event'); 
+						parent.reset();
+
+					})
+	                .catch(function(e){console.log(e); parent.percentCompleted = 0; parent.$parent.$emit('unblock-window'); NotyF({type:'error',text:"Ошибка."});});
                 //parent.reset();
                 //parent.$parent.$emit('event');
               }
@@ -426,11 +427,7 @@ Vue.component("calculation-bodywork", {
             this.form.form_subject =  'Форма "ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА"';
             this.form.chekedBS =  false;
             this.percentCompleted = 0;
-            this.block = true;
-            this.getElementById("attachments").value = [];
-            console.log(this.getElementById("attachments").value);
-            document.getElementById("attachments").value = [];
-            console.log(document.getElementById("attachments").value);
+            parent.$refs.fileInputs.value = null;
             this.validation.reset();
           }
         },

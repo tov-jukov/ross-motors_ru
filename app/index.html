@@ -575,6 +575,7 @@
                     <p class="close" @click="close()"></p>
                     <slot></slot>
                 </div>
+                <div class="MFOverlayBlock" v-show="active_block" ></div>
             </div>
             <a id="show-modal" @click="open()">
                 <div class="section-class-item">
@@ -623,7 +624,7 @@
                 </br><span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                 <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" /> Загрузить фото:
                 <input ref="fileInputs" type="file" name="file" multiple />
-                <span>{{percentCompleted}}</span>
+                <span >{{percentCompleted}}%</span>
                 <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений:" v-model="form.IMessage"></textarea>
                 <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
                 </br>
