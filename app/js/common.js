@@ -391,7 +391,7 @@ Vue.component("calculation-bodywork", {
 	                data.append('IPhone',parent.form.IPhone);
 	                data.append('form_subject',parent.form.form_subject);
 	                data.append('chekedBS',parent.form.chekedBS);
-	                parent.form.chekedBS = false;
+	                //parent.form.chekedBS = false;
 	                if (files.length > 0) {
 	                    for (var i = 0; i < files.length; i++) {
 	                        data.append('file[]', files[i]);
