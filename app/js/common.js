@@ -78,9 +78,6 @@ console.log(JSON.stringify(validationTree, null, 2))
 //Vue.use(window.vuelidate.default);
 
 //----------------------------------------------------------
-
-
-//??????????? ??????????
   Vue.component('v-dialog', {
     template: '#dialog-template',
     data: function() {
@@ -107,7 +104,7 @@ console.log(JSON.stringify(validationTree, null, 2))
       this.$on('event',function(){this.close();});
     }
   })
-// ??? - ??????????? ??????????
+//----------------------------------------------------------
 Vue.component('v-dialog-menu-a', {
     template: '#dialog-template-menu-a',
     data: function() {
@@ -134,10 +131,8 @@ Vue.component('v-dialog-menu-a', {
       this.$on('event',function(){this.close();});
     }
   })
-
 //----------------------------------------------------------
-//??????????? ??????????
-  Vue.component('v-dialog-a', {
+Vue.component('v-dialog-a', {
     template: '#dialog-template-a',
     data: function() {
       return {
@@ -169,7 +164,7 @@ Vue.component('v-dialog-menu-a', {
 //form_subject - форма отправитель
 SimpleVueValidation = SimpleVueValidator;
 var Validator = SimpleVueValidation.Validator;
- Vue.use(SimpleVueValidation);
+Vue.use(SimpleVueValidation);
 //const { required, minLength } = require('libs/vue/validators.js')
 Vue.component("callback", {
   template:"#callback-template",
@@ -230,9 +225,9 @@ new Vue({
 new Vue({
             el: "#app-callback4",
 });
+
 // -- end callback
 // -- ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ СЛЕСАРНОГО РЕМОНТА
-
 Vue.component("calculation-locksmith-repair", {
   template:"#calculation-locksmith-repair-template",
   data:function(){
@@ -289,7 +284,7 @@ new Vue({
             el: "#form-calculation-locksmith-repair",
         });
 
-        //---------------------------------------------------------
+//---------------------------------------------------------
 // ОНЛАЙН РАСЧЕТ СТОИМОСТИ ЗАПЧАСТЕЙ И НАЛИЧИЕ НА СКЛАДЕ - форма 4
 //calculation-zip-warehouse-template
 Vue.component("calculation-zip-warehouse", {
@@ -345,9 +340,9 @@ Vue.component("calculation-zip-warehouse", {
   }
 
 });
-  new Vue({
+  
+new Vue({
             el: "#form-calculation-zip-warehouse",
-
         });
 
 // ОН-ЛАЙН РАСЧЕТ СТОИМОСТИ КУЗОВНОГО РЕМОНТА
@@ -451,7 +446,6 @@ Vue.component("calculation-bodywork", {
 new Vue({el:"#form-calculation-bodywork"});
 
 // cascad-selector-app
-
 Vue.component('cascad-selector', {
         template: '#cascad-selector-template',
         data: function() {
@@ -471,7 +465,7 @@ Vue.component('cascad-selector', {
                     "Kia": ["RIO II", "RIO III", "Rio X-Line", "PicantoKIA "]
                 },
                 mileages:[
-                        "15",
+                         "15",
                          "30",
                          "45",
                          "60",
