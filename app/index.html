@@ -500,9 +500,6 @@
             </div>
     </section>
     <footer>
-        <script type="text/javascript">
-        createNoty();
-        </script>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -511,6 +508,7 @@
                     <a href="https://vk.com/rossmotors"><i class="fa fa-vk" aria-hidden="true"></i></a>
                     <a href=""><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
                     <a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <p id = "site-version">{{version}}</p>
                 </div>
                 <div class="col-md-4">
                     <ul>
@@ -623,7 +621,7 @@
                 <input type="text" v-mask="'+#(###)##-##-###'" id="InputPhone" name="phone" placeholder="Телефон*:" v-model="form.IPhone" />
                 </br><span class="red" v-show="validation.hasError('form.IPhone')">Введите номер телефона</span>
                 <input type="text" id="InputName" name="name" placeholder="Укажите вашу эл.почту" v-model="form.IMail" /> Загрузить фото:
-                <input ref="fileInputs" type="file" name="file" multiple />
+                <input ref="fileInputs" type="file" name="file" accept="image/jpeg,image/png,image/gif" multiple />
                 <span >{{percentCompleted}}%</span>
                 <textarea type="comment" id="inputMessage" name="message" rows="3" placeholder="Описание повреждений:" v-model="form.IMessage"></textarea>
                 <label><span class="red">*</span>– обязательные поля. Расчет Вы получите в течение 15 минут.</label>
