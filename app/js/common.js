@@ -6,7 +6,7 @@ new Vue({
   data: {
     slides: [
     {
-      url: '/img/licence/license-01.jpg'
+      url: '/img/licence/license-01.png'
     },
 
     {

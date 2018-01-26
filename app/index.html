@@ -462,7 +462,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div id="vueapp">
-                    <carousel-3d :width="300" :height="380" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :count="slides.length">
+                    <carousel-3d :width="565" :height="400" :controls-visible="true" :controls-prev-html="'&#10092;'" :controls-next-html="'&#10093;'" :controls-width="30" :controls-height="60" :count="slides.length" :autoplay="true" :autoplay-timeout="2400">
                         <slide v-for="(slide, i) in slides" :index="i">
                             <img v-bind:src="slide.url">
                         </slide>
